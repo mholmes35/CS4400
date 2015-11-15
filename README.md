@@ -24,10 +24,10 @@ Goal
 
 Classes
 ================
-- [ ] Login
-- [ ] Create New Account
-- [ ] Choose Functionality
-- [ ] Find Rooms
+- [ ] Login -Morgan
+- [ ] Create New Account -Morgan
+- [ ] Choose Functionality -Morgan
+- [ ] Find Rooms -Morgan
 - [ ] Make Reservation
 - [ ] Payment Information
 - [ ] Confirmation Screne
@@ -39,7 +39,7 @@ Classes
 - [ ] View Popular Room Category Report
 - [ ] Revenue Report
 
-Entity Types
+Entity Types - Morgan
 ================
 - [ ] User
 - [ ] Customer
