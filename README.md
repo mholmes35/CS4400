@@ -1,9 +1,19 @@
 # CS4400
 Group 61
-Christian Harris
-Ernest Williams
-Morgan Holmes
-Paul Wilson
+
+Due Date
+================
+Overall: December 2, 2015
+All Classes: TBD
+All Views: TBD
+Testing: TBD
+
+Members
+================
+- Christian Harris
+- Ernest Williams
+- Morgan Holmes
+- Paul Wilson
 
 Goal
 ================
