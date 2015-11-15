@@ -3,10 +3,10 @@ Group 61
 
 Due Date
 ================
-Overall: December 2, 2015
-All Classes: TBD
-All Views: TBD
-Testing: TBD
+- Overall: December 2, 2015
+- All Classes: TBD
+- All Views: TBD
+- Testing: TBD
 
 Members
 ================
