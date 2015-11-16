@@ -128,6 +128,10 @@ public class NewUserForm extends javax.swing.JFrame {
         //call create user? new user? 
         //createUser() - needs to interact with the database.. does the user exist? are keys unique? 
         //need to communicate with user about that
+        
+        //then open the choose function screen WILL BE A CUSTOMER NO NEED TO CHECK
+         CustomerFunctionality newcustFunc = new CustomerFunctionality();
+        newcustFunc.setVisible(true); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

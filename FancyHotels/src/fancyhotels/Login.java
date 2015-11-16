@@ -123,7 +123,10 @@ public class Login extends javax.swing.JFrame {
         //checkValisUser() ?
         //if valid, then the choose functionality screen should pop up
         //check is manager or is customer. 
-        
+       
+       CustomerFunctionality newcustFunc = new CustomerFunctionality();
+        newcustFunc.setVisible(true); 
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
