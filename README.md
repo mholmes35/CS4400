@@ -4,7 +4,7 @@ Group 61
 Due Date
 ================
 - Overall: December 2, 2015
-- All Classes: TBD
+- All Entities: DONE.
 - All Views: TBD
 - Testing: TBD
 
