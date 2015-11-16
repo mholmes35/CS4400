@@ -36,9 +36,9 @@ Classes
 - [ ] Cancel Reservation
 - [ ] View Review
 - [ ] Provide Review
-- [ ] Reservation Report
-- [ ] View Popular Room Category Report
-- [ ] Revenue Report
+- [ ] Reservation Report - Morgan
+- [ ] View Popular Room Category Report - Morgan
+- [ ] Revenue Report -Morgan
 
 Entity Types - Morgan
 ================
