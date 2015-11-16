@@ -26,7 +26,8 @@ Classes
 ================
 - [ ] Login -Morgan
 - [ ] Create New Account -Morgan
-- [ ] Choose Functionality -Morgan
+- [ ] Choose Customer Functionality -Morgan
+- [ ] Choose Manager Functionality -Morgan
 - [ ] Find Rooms -Morgan
 - [ ] Make Reservation
 - [ ] Payment Information
