@@ -24,8 +24,8 @@ Goal
 
 Classes
 ================
-- [ ] Login -Morgan
-- [ ] Create New Account -Morgan
+- [x] Login -Morgan
+- [x] Create New Account -Morgan
 - [ ] Choose Customer Functionality -Morgan
 - [ ] Choose Manager Functionality -Morgan
 - [ ] Find Rooms -Morgan
