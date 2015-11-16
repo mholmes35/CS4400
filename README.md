@@ -49,5 +49,5 @@ Entity Types - Morgan
 - [x] Payment Information
 - [x] Room 
 - [x] Reservation
-- [ ] Reserved Room
-- [ ] R_Selects_Extra_Bed
+- [x] Reserved Room
+- [x] R_Selects_Extra_Bed
