@@ -41,9 +41,9 @@ Classes
 
 Entity Types - Morgan
 ================
-- [ ] User
-- [ ] Customer
-- [ ] Management
+- [x] User
+- [x] Customer
+- [x] Management
 - [ ] Hotel Review
 - [ ] Payment Information
 - [ ] Room 
