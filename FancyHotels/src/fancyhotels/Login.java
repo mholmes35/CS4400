@@ -126,6 +126,10 @@ public class Login extends javax.swing.JFrame {
        
        CustomerFunctionality newcustFunc = new CustomerFunctionality();
         newcustFunc.setVisible(true); 
+        
+        //if manager
+        //ManagerFunctionality newmanagFunc = new ManagerFunctionality();
+        //newmanagFunc.setVisible(true); 
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
