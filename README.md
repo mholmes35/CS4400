@@ -27,7 +27,7 @@ Classes
 - [x] Login -Morgan
 - [x] Create New Account -Morgan
 - [x] Choose Customer Functionality -Morgan
-- [ ] Choose Manager Functionality -Morgan
+- [x] Choose Manager Functionality -Morgan
 - [ ] Find Rooms -Morgan
 - [ ] Make Reservation -- Ernest
 - [ ] Payment Information --Ernest
