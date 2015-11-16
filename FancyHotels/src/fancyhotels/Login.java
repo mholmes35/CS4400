@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package WindowViews;
+package fancyhotels;
 
 /**
  *
@@ -121,10 +121,15 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // login was pressed
         //checkValisUser() ?
+        //if valid, then the choose functionality screen should pop up
+        //check is manager or is customer. 
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // new user screen needs to pop up..
+        NewUserForm newNewUser = new NewUserForm();
+        newNewUser.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
