@@ -45,9 +45,9 @@ Entity Types - Morgan
 - [x] User
 - [x] Customer
 - [x] Management
-- [ ] Hotel Review
-- [ ] Payment Information
-- [ ] Room 
-- [ ] Reservation
+- [x] Hotel Review
+- [x] Payment Information
+- [x] Room 
+- [x] Reservation
 - [ ] Reserved Room
 - [ ] R_Selects_Extra_Bed
