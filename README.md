@@ -29,9 +29,9 @@ Classes
 - [x] Choose Customer Functionality -Morgan
 - [ ] Choose Manager Functionality -Morgan
 - [ ] Find Rooms -Morgan
-- [ ] Make Reservation
-- [ ] Payment Information
-- [ ] Confirmation Screne
+- [ ] Make Reservation -- Ernest
+- [ ] Payment Information --Ernest
+- [ ] Confirmation Screne --Ernest
 - [ ] Update Reservation
 - [ ] Cancel Reservation
 - [ ] View Review
