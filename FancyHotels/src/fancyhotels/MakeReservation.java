@@ -84,6 +84,8 @@ public class MakeReservation extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //open up modified make reservation screen
+        //frame or panel?
+        new MakeReservationDetail().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
