@@ -60,11 +60,11 @@ public class MakeReservation extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addComponent(jLabel3)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(41, 41, 41))
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,9 +73,9 @@ public class MakeReservation extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(37, 37, 37)
                 .addComponent(jButton1)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,7 +83,7 @@ public class MakeReservation extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        //open up modified make reservation screen
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

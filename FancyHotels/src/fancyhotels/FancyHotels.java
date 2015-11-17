@@ -24,6 +24,7 @@ public class FancyHotels extends Application {
     public void start(Stage primaryStage) {
         Login newLogin = new Login();
         newLogin.setVisible(true);
+        //this is where we will keep the user. info probably
         
         
         //Scene scene = new Scene(root, 300, 250);
