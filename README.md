@@ -34,8 +34,8 @@ Classes
 - [ ] Confirmation Screne --Ernest
 - [ ] Update Reservation -Paul
 - [ ] Cancel Reservation -Paul
-- [ ] View Review
-- [ ] Provide Review
+- [ ] View Review        -Christian
+- [ ] Provide Review     -Christian
 - [ ] Reservation Report - Morgan
 - [ ] View Popular Room Category Report - Morgan
 - [ ] Revenue Report -Morgan
