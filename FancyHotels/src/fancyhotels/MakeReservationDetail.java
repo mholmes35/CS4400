@@ -39,6 +39,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,6 +60,9 @@ public class MakeReservationDetail extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable2.setAlignmentX(0.0F);
+        jTable2.setAlignmentY(0.0F);
+        jTable2.setShowGrid(true);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel1.setText("Start Date:");
