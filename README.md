@@ -32,8 +32,8 @@ Classes
 - [ ] Make Reservation -- Ernest
 - [ ] Payment Information --Ernest
 - [ ] Confirmation Screne --Ernest
-- [ ] Update Reservation -Paul
-- [ ] Cancel Reservation -Paul
+- [x] Update Reservation -Paul
+- [x] Cancel Reservation -Paul
 - [ ] View Review        -Christian
 - [ ] Provide Review     -Christian
 - [x] Reservation Report - Morgan
