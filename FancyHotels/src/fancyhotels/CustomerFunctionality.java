@@ -120,14 +120,14 @@ public class CustomerFunctionality extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //open update reservation screen
-        //new UpdateReservation().setVisible(true);
+        new UpdateReservation().setVisible(true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         //open the cancel reservation screen
-        //new CancelReservation().setVisible(true);
+        new CancelReservation().setVisible(true);
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
