@@ -112,18 +112,22 @@ public class CustomerFunctionality extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //open make a reservation screen
+        MakeReservation makeReservation = new MakeReservation();
+        makeReservation.setVisible(true); 
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //open update reservation screen
+        //new UpdateReservation().setVisible(true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         //open the cancel reservation screen
+        //new CancelReservation().setVisible(true);
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -135,6 +139,7 @@ public class CustomerFunctionality extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         //open view reviews screen
+        new ViewReview().setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -166,6 +171,7 @@ public class CustomerFunctionality extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new CustomerFunctionality().setVisible(true);
             }
