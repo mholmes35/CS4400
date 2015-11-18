@@ -51,3 +51,12 @@ Entity Types - Morgan
 - [x] Reservation
 - [x] Reserved Room
 - [x] R_Selects_Extra_Bed
+
+
+
+Todo: 
+- [ ] make titles on all the windows (easier to decode and such)
+- [ ] Make sure all buttons open the correct pages
+- [ ] start filling in constructors for entitities
+- [ ] start linking the fields to variables and pass to appropriate methods
+- [ ] start thinking about methods in the entities 
