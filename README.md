@@ -28,7 +28,7 @@ Classes
 - [x] Create New Account -Morgan
 - [x] Choose Customer Functionality -Morgan
 - [x] Choose Manager Functionality -Morgan
-- [ ] Find Rooms -Morgan
+- [x] Find Rooms -Morgan
 - [ ] Make Reservation -- Ernest
 - [ ] Payment Information --Ernest
 - [ ] Confirmation Screne --Ernest
@@ -36,9 +36,9 @@ Classes
 - [ ] Cancel Reservation -Paul
 - [ ] View Review        -Christian
 - [ ] Provide Review     -Christian
-- [ ] Reservation Report - Morgan
-- [ ] View Popular Room Category Report - Morgan
-- [ ] Revenue Report -Morgan
+- [x] Reservation Report - Morgan
+- [x] View Popular Room Category Report - Morgan
+- [x] Revenue Report -Morgan
 
 Entity Types - Morgan
 ================
