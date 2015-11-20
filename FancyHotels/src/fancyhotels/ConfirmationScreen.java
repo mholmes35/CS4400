@@ -10,11 +10,12 @@ package fancyhotels;
  * @author ernestwilliams
  */
 public class ConfirmationScreen extends javax.swing.JPanel {
-
+    private Customer user;
+    private Reservation res;
     /**
      * Creates new form ConfirmationScreen
      */
-    public ConfirmationScreen() {
+    public ConfirmationScreen(Customer user, Reservation res) {
         initComponents();
     }
 

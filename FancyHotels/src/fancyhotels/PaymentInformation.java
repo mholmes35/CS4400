@@ -6,6 +6,7 @@
 package fancyhotels;
 
 import Entities.Customer;
+import Entities.Reservation;
 
 /**
  *
@@ -13,11 +14,13 @@ import Entities.Customer;
  */
 public class PaymentInformation extends javax.swing.JFrame {
     private Customer user;
+    private Reservation res;
     /**
      * Creates new form PaymentInformation
      */
-    public PaymentInformation(Customer user) {
+    public PaymentInformation(Customer user, Reservation res) {
         this.user = user;
+        this.res = res;
         initComponents();
     }
 
@@ -193,7 +196,7 @@ public class PaymentInformation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaymentInformation(null).setVisible(true);
+                new PaymentInformation(null,null).setVisible(true);
             }
         });
     }
