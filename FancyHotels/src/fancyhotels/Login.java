@@ -128,8 +128,9 @@ public class Login extends javax.swing.JFrame {
         //check is manager or is customer. 
        String uname = jTextField1.getText();
        char[] pw = jPasswordField1.getPassword();
-       User u = new User(uname, pw.toString());
-       u.login(uname, pw);
+       //User u = new User(uname, pw.toString());
+       //u.login(uname, pw);
+        //this needs to be a function in fancy hotels that just straight up returns a user
         
         
        CustomerFunctionality newcustFunc = new CustomerFunctionality();
