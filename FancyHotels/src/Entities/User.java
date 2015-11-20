@@ -36,4 +36,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public boolean login(String userName, char[] password) {
+        
+        //query the database
+        //is this a valid user? return true 
+        
+        return true;
+    }
 }

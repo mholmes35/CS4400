@@ -5,6 +5,8 @@
  */
 package fancyhotels;
 
+import Entities.User;
+
 /**
  *
  * @author morganholmes
@@ -124,7 +126,12 @@ public class Login extends javax.swing.JFrame {
         //checkValisUser() ?
         //if valid, then the choose functionality screen should pop up
         //check is manager or is customer. 
-       
+       String uname = jTextField1.getText();
+       char[] pw = jPasswordField1.getPassword();
+       User u = new User(uname, pw.toString());
+       u.login(uname, pw);
+        
+        
        CustomerFunctionality newcustFunc = new CustomerFunctionality();
        
         newcustFunc.setVisible(true); 
