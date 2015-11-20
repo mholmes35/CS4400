@@ -15,6 +15,11 @@ public class NewUserForm extends javax.swing.JFrame {
      * Creates new form NewUserForm
      */
     public NewUserForm() {
+        // make the checks for valid user
+        //TRY CATCH
+        
+        //success
+        
         initComponents();
     }
 
@@ -130,8 +135,8 @@ public class NewUserForm extends javax.swing.JFrame {
         //need to communicate with user about that
         
         //then open the choose function screen WILL BE A CUSTOMER NO NEED TO CHECK
-         CustomerFunctionality newcustFunc = new CustomerFunctionality();
-        newcustFunc.setVisible(true); 
+         //CustomerFunctionality newcustFunc = new CustomerFunctionality();
+        //newcustFunc.setVisible(true); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

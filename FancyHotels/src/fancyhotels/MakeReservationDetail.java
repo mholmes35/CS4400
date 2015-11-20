@@ -5,16 +5,19 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+
 /**
  *
  * @author morganholmes
  */
 public class MakeReservationDetail extends javax.swing.JFrame {
-
+    private Customer user;
     /**
      * Creates new form MakeReservationDetail
      */
-    public MakeReservationDetail() {
+    public MakeReservationDetail(Customer user) {
+        this.user = user;
         initComponents();
     }
 
@@ -156,7 +159,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //open payment info
-        new PaymentInformation().setVisible(true);
+        new PaymentInformation(this.user).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -189,7 +192,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MakeReservationDetail().setVisible(true);
+                new MakeReservationDetail(null).setVisible(true);
             }
         });
     }

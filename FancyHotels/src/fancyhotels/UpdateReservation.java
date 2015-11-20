@@ -5,18 +5,23 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+
 /**
  *
  * @author pwilson3
  */
 public class UpdateReservation extends javax.swing.JFrame {
-
+    private Customer user;
     /**
      * Creates new form UpdateReservation
      */
-    public UpdateReservation() {
+    public UpdateReservation(Customer user) {
+        this.user = user;
         initComponents();
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -262,7 +267,7 @@ public class UpdateReservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UpdateReservation().setVisible(true);
+                new UpdateReservation(null).setVisible(true);
             }
         });
     }

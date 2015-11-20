@@ -5,16 +5,19 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+
 /**
  *
  * @author ernestwilliams
  */
 public class PaymentInformation extends javax.swing.JFrame {
-
+    private Customer user;
     /**
      * Creates new form PaymentInformation
      */
-    public PaymentInformation() {
+    public PaymentInformation(Customer user) {
+        this.user = user;
         initComponents();
     }
 
@@ -190,7 +193,7 @@ public class PaymentInformation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaymentInformation().setVisible(true);
+                new PaymentInformation(null).setVisible(true);
             }
         });
     }

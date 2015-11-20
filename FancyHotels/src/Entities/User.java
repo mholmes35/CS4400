@@ -12,9 +12,18 @@ package Entities;
 public class User {
     private String username;
     private String password;
-    public User(String un, String pw) {
+    public User(String un, char[] pw) {
         this.username = un;
-        this.password = pw;
+        this.password = pw.toString();
+        
+        //query the data base 
+        //try catch? idk look up database stuff
+        
+        boolean isValid = true;
+        if (isValid) {
+            //successful login
+             
+        }
     }
     public String getUsername() {
         return this.username;

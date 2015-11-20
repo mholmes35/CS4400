@@ -5,6 +5,8 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+
 /**
  *
  * @author Christian Harris
@@ -16,6 +18,10 @@ public class ViewReview extends javax.swing.JFrame {
      */
     public ViewReview() {
         initComponents();
+    }
+
+    ViewReview(Customer user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

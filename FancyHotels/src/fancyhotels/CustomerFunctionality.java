@@ -5,16 +5,20 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+
 /**
  *
  * @author morganholmes
  */
 public class CustomerFunctionality extends javax.swing.JFrame {
-
+    private Customer user;
     /**
      * Creates new form CustomerFunctionality
      */
-    public CustomerFunctionality() {
+    public CustomerFunctionality(Customer user) {
+        this.user = user;
+        
         initComponents();
     }
 
@@ -112,7 +116,7 @@ public class CustomerFunctionality extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //open make a reservation screen
-        MakeReservation makeReservation = new MakeReservation();
+        MakeReservation makeReservation = new MakeReservation(this.user);
         makeReservation.setVisible(true); 
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -120,27 +124,27 @@ public class CustomerFunctionality extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //open update reservation screen
-        new UpdateReservation().setVisible(true);
+        new UpdateReservation(this.user).setVisible(true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         //open the cancel reservation screen
-        new CancelReservation().setVisible(true);
+        new CancelReservation(this.user).setVisible(true);
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         //open create review screen
-        new ProvideReview().setVisible(true);
+        new ProvideReview(this.user).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         //open view reviews screen
-        new ViewReview().setVisible(true);
+        new ViewReview(this.user).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -174,7 +178,7 @@ public class CustomerFunctionality extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new CustomerFunctionality().setVisible(true);
+                new CustomerFunctionality(null).setVisible(true);
             }
         });
     }

@@ -9,6 +9,8 @@ package Entities;
  *
  * @author morganholmes
  */
-public class Manager {
-    
+public class Manager extends User {
+    public Manager(String username, char[] password) {
+        super(username, password);
+    }
 }

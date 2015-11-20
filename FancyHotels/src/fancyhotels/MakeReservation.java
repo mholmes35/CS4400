@@ -5,18 +5,23 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+
 /**
  *
  * @author ernestwilliams
  */
 public class MakeReservation extends javax.swing.JFrame {
-
+    private Customer user;
     /**
      * Creates new form MakeReservation
      */
-    public MakeReservation() {
+    public MakeReservation(Customer user) {
+        this.user = user;
         initComponents();
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,7 +110,7 @@ public class MakeReservation extends javax.swing.JFrame {
         // TODO add your handling code here:
         //open up modified make reservation screen
         //frame or panel?
-        new MakeReservationDetail().setVisible(true);
+        new MakeReservationDetail(this.user).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -138,7 +143,7 @@ public class MakeReservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MakeReservation().setVisible(true);
+                new MakeReservation(null).setVisible(true);
             }
         });
     }

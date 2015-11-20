@@ -5,6 +5,8 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+import Entities.Manager;
 import Entities.User;
 
 /**
@@ -13,15 +15,15 @@ import Entities.User;
  */
 public class Login extends javax.swing.JFrame {
 
-    private final FancyHotels app;
+
     
     /**
      * Creates new form Login
-     * @param app the driver
+  
      */
     
-    public Login(FancyHotels app) {
-        this.app = app;
+    public Login() {
+    
         initComponents();
         
     }
@@ -133,19 +135,34 @@ public class Login extends javax.swing.JFrame {
         //check is manager or is customer. 
        String uname = jTextField1.getText();
        char[] pw = jPasswordField1.getPassword();
-       System.out.println("" + pw[0]);
-       //User u = new User(uname, pw.toString());
-       this.app.login(uname, pw);
+     //SQL QUERY TO SEE IF IS user
+     //throw error
+     
+     //MAKE A BOOLEAN
+     boolean isManager = false;
+     
+     if(isManager) {
+         Manager user = new Manager(uname, pw);
+         ManagerFunctionality newmanagFunc = new ManagerFunctionality();
+        newmanagFunc.setVisible(true);
+     } else {
+         //query for email
+         String em = "blah@gatech.edu";
+        Customer cust = new Customer(uname,pw, em); 
+         CustomerFunctionality newcustFunc = new CustomerFunctionality(cust);
+
+        newcustFunc.setVisible(true); 
+     }
+     
+       
+       
         //this needs to be a function in fancy hotels that just straight up returns a user
         
         
-       CustomerFunctionality newcustFunc = new CustomerFunctionality();
        
-        newcustFunc.setVisible(true); 
         //loginForm.setvisible(false);
         //if manager
-        //ManagerFunctionality newmanagFunc = new ManagerFunctionality();
-        //newmanagFunc.setVisible(true); 
+         
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -186,7 +203,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 final Login loginForm;
-                loginForm = new Login(null);
+                loginForm = new Login();
                 loginForm.setVisible(true);
             }
         });

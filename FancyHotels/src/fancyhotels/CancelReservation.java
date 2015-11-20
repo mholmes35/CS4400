@@ -5,18 +5,23 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+
 /**
  *
  * @author pwilson3
  */
 public class CancelReservation extends javax.swing.JFrame {
-
+    private Customer user;
     /**
      * Creates new form CancelReservation
      */
-    public CancelReservation() {
+    public CancelReservation(Customer user) {
+        this.user = user;
         initComponents();
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -251,7 +256,7 @@ public class CancelReservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CancelReservation().setVisible(true);
+                new CancelReservation(null).setVisible(true);
             }
         });
     }
