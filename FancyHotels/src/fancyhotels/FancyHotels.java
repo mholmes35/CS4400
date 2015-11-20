@@ -5,6 +5,7 @@
  */
 package fancyhotels;
 
+import Entities.User;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+
+
 /**
  *
  * @author morganholmes
@@ -22,8 +25,10 @@ public class FancyHotels extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Login newLogin = new Login();
+        
+        Login newLogin = new Login(new FancyHotels());
         newLogin.setVisible(true);
+        
         //this is where we will keep the user. info probably
         
         
@@ -38,7 +43,15 @@ public class FancyHotels extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //final FancyHotels app;
+        
         launch(args);
+        
+    }
+    public User login(String uname, char[] password) {
+        System.out.println("Received: "+ uname + "  " +password.toString());
+        return null;
+        
     }
     
 }

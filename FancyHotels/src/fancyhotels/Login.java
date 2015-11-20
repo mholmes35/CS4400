@@ -12,13 +12,18 @@ import Entities.User;
  * @author morganholmes
  */
 public class Login extends javax.swing.JFrame {
+
+    private final FancyHotels app;
     
     /**
      * Creates new form Login
+     * @param app the driver
      */
     
-    public Login() {
+    public Login(FancyHotels app) {
+        this.app = app;
         initComponents();
+        
     }
 
     /**
@@ -128,8 +133,9 @@ public class Login extends javax.swing.JFrame {
         //check is manager or is customer. 
        String uname = jTextField1.getText();
        char[] pw = jPasswordField1.getPassword();
+       System.out.println("" + pw[0]);
        //User u = new User(uname, pw.toString());
-       //u.login(uname, pw);
+       this.app.login(uname, pw);
         //this needs to be a function in fancy hotels that just straight up returns a user
         
         
@@ -180,7 +186,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 final Login loginForm;
-                loginForm = new Login();
+                loginForm = new Login(null);
                 loginForm.setVisible(true);
             }
         });
