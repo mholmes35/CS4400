@@ -18,6 +18,21 @@ public class Reservation {
     private int p_CardNo;
     private String cust_username;
 
+    
+    
+    public Reservation(String startDate, String endDate, boolean isCancelled, float totalCost, int p_CardNo,String cust_username){
+        //check the dates
+        //probably need to plt the string at the '/' and compare each element
+        //is it in the past? throw error
+        //is it the end before the begining? throw error
+        
+        
+        //GENERATE THE ID (max id +1 ?)
+        //make new Reserved Room
+        //put it in the database
+        
+        
+    }
     /**
      * @return the reservationID
      */

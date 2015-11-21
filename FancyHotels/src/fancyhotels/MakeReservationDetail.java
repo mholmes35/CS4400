@@ -166,14 +166,19 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         // TODO add your handling code here:
         //open payment info
         //make a reservation.
-        Reservation res = new Reservation();
+        
+        
+        //get all the info from the elements
+        //Reservation res = new Reservation();
+        Reservation res = null; //to be deleted
         new ConfirmationScreen(this.user, res).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //
-        Reservation res = new Reservation();
+        //get all the info from the elements
+        //Reservation res = new Reservation(this.user);
+        Reservation res = null; //to be deleted. 
        new PaymentInformation(this.user, res).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

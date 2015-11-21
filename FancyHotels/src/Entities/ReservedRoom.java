@@ -14,6 +14,10 @@ public class ReservedRoom {
     private int rroomNum;
     private String location;
 
+    
+    public ReservedRoom(int id, int num, String location) {
+        //PUT IT IN THE DATABASE
+    }
     /**
      * @return the reservedRoomID
      */

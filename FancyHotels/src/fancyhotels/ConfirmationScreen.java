@@ -5,6 +5,9 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+import Entities.Reservation;
+
 /**
  *
  * @author ernestwilliams

@@ -15,6 +15,8 @@ public class FindRooms extends javax.swing.JFrame {
      * Creates new form FindRooms
      */
     public FindRooms() {
+        //when this is called, the dataabase needs to return all the rooms or whatever
+        //and make new Room objects
         initComponents();
     }
 

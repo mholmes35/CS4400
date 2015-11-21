@@ -17,7 +17,8 @@ public class Room {
     private String location; //?
     private boolean extraBed;
     private float extraBedCost;
-
+    
+    
     /**
      * @return the numPeople
      */
