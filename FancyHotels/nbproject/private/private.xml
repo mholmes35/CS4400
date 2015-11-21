@@ -2,6 +2,33 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/RevenueReport.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/ManagerFunctionality.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/ConfirmationScreen.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/FindRooms.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/Entities/Room.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/Entities/ReservedRoom.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/MakeReservationDetail.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/Login.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/Entities/RSelectsExtraBed.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/PaymentInformation.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/UpdateReservation.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/PopularRoomReport.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/Entities/Manager.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/MakeReservation.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/Entities/PaymentInformation.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/ViewReview.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/Entities/Customer.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/NewUserForm.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/ProvideReview.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/Entities/HotelReview.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/FancyHotels.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/Entities/User.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/ReservationReport.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/Entities/Reservation.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/CancelReservation.java</file>
+            <file>file:/Users/morganholmes/Desktop/CS4400/FancyHotels/src/fancyhotels/CustomerFunctionality.java</file>
+        </group>
     </open-files>
 </project-private>
