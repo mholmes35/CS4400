@@ -151,7 +151,7 @@ public class ProvideReview extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProvideReview().setVisible(true);
+                new ProvideReview(null).setVisible(true);
             }
         });
     }
