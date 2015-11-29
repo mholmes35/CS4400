@@ -10,7 +10,7 @@ package fancyhotels;
  * @author morganholmes
  */
 public class NewUserForm extends javax.swing.JFrame {
-
+    FancyHotelSingleton singleton;
     /**
      * Creates new form NewUserForm
      */
@@ -19,7 +19,7 @@ public class NewUserForm extends javax.swing.JFrame {
         //TRY CATCH
         
         //success
-        
+        singleton = FancyHotelSingleton.getInstance();
         initComponents();
     }
 
@@ -137,6 +137,15 @@ public class NewUserForm extends javax.swing.JFrame {
         //then open the choose function screen WILL BE A CUSTOMER NO NEED TO CHECK
          //CustomerFunctionality newcustFunc = new CustomerFunctionality();
         //newcustFunc.setVisible(true); 
+        if (!jPasswordField1.getText().equals(jPasswordField2.getText())) {
+            System.out.println("Password is not the same");
+        } else {
+            try {
+                boolean status = singleton.createUser(jTextField2.getText(), jPasswordField1.getText(), jTextField3.getText()) ;
+            } catch(Exception e) {
+                System.out.println("Exception: " + e);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

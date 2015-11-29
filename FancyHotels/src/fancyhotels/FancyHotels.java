@@ -18,18 +18,35 @@ import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author morganholmes
  */
 public class FancyHotels extends Application {
+    FancyHotelSingleton singleton;
     
     @Override
     public void start(Stage primaryStage) {
         
-        Login newLogin = new Login();
-        newLogin.setVisible(true);
+        singleton = FancyHotelSingleton.getInstance();
+        
+        try {
+            boolean connection_status = singleton.connectToDB();
+            if (connection_status) {
+                Login newLogin = new Login();
+                newLogin.setVisible(true);
+            } else {
+                System.out.println("Unable to connect to database");
+            }
+            
+        } catch(Exception e) {
+            System.out.println("Exception while trying to connect to database: " + e);
+        }
+        
+        
+        
         
         //this is where we will keep the user. info probably
         
@@ -46,31 +63,7 @@ public class FancyHotels extends Application {
      */
     public static void main(String[] args) {
         //final FancyHotels app;
-        Connection conn = null;
-        boolean connection_status = connectToDB(conn);
-        
         launch(args);
         
     }
-    
-    public static boolean connectToDB(Connection conn) {
-        conn = null;
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Group_61", "cs4400_Group_61", "vswEJJqe");
-            
-            if(!conn.isClosed()) {
-                System.out.println("Successfully connected to MySQL server using TCP/IP...");
-                return true;
-            } else {
-                System.out.println("Unable to connect to MySQL server using TCP/IP...");
-                return false;
-            }
-        } catch(Exception e) {
-            System.err.println("Exception: " + e.getMessage());
-            return false;
-        }
-    }
-    
 }
