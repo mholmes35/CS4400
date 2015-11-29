@@ -10,7 +10,7 @@ package Entities;
  * @author morganholmes
  */
 public class Manager extends User {
-    public Manager(String username, char[] password) {
+    public Manager(String username, String password) {
         super(username, password);
     }
 }

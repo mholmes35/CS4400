@@ -19,7 +19,7 @@ public class Customer extends User {
      * @param pw
      * @param em
      */
-    public Customer(String un, char[] pw, String em) {
+    public Customer(String un, String pw, String em) {
         super(un, pw);
         this.email = em;
         this.username = un;

@@ -14,7 +14,7 @@ import Entities.User;
  * @author morganholmes
  */
 public class Login extends javax.swing.JFrame {
-
+    FancyHotelSingleton singleton;
 
     
     /**
@@ -23,7 +23,7 @@ public class Login extends javax.swing.JFrame {
      */
     
     public Login() {
-    
+        singleton = FancyHotelSingleton.getInstance();
         initComponents();
         
     }
@@ -133,26 +133,36 @@ public class Login extends javax.swing.JFrame {
         //checkValisUser() ?
         //if valid, then the choose functionality screen should pop up
         //check is manager or is customer. 
+        
+        
+        
        String uname = jTextField1.getText();
-       char[] pw = jPasswordField1.getPassword();
-     //SQL QUERY TO SEE IF IS user
-     //throw error
-     
-     //MAKE A BOOLEAN
-     boolean isManager = false;
-     
-     if(isManager) {
-         Manager user = new Manager(uname, pw);
-         ManagerFunctionality newmanagFunc = new ManagerFunctionality();
-        newmanagFunc.setVisible(true);
-     } else {
-         //query for email
-         String em = "blah@gatech.edu";
-        Customer cust = new Customer(uname,pw, em); 
-         CustomerFunctionality newcustFunc = new CustomerFunctionality(cust);
-
-        newcustFunc.setVisible(true); 
-     }
+       String pw = jPasswordField1.getText();
+       
+        if (uname.equals("") || pw.equals("")) {
+            System.out.println("Username or password cannot be empty");
+        } else {
+            String type = singleton.login(uname, pw);
+            
+            System.out.println("Type returned " + type + " with uname " + uname + " and pw " + pw);
+            if(type == null) {
+                System.out.println("User does not exist");
+            }else if (type.equals("c")) {
+                // Type is a customer
+                Customer cust = singleton.getCustomer();
+                CustomerFunctionality newcustFunc = new CustomerFunctionality(cust);
+                newcustFunc.setVisible(true); 
+                
+            } else if(type.equals("m")) {
+                // Type is a manager
+                ManagerFunctionality newmanagFunc = new ManagerFunctionality();
+                newmanagFunc.setVisible(true);
+            } else {
+                // User does not exist
+                System.out.println("User does not exist");
+                
+            }
+        }
      
        
        

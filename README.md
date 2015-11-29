@@ -66,7 +66,7 @@ Interfacing Database
 ================
 - [x] Connect to database
 - [x] Create customer
-- [ ] Login (Handle if a customer or a manager)
+- [x] Login (Handle if a customer or a manager)
 - [ ] Add Payment
 - [ ] Update Payment
 - [ ] Use Payment

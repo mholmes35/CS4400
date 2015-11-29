@@ -12,7 +12,7 @@ package Entities;
 public class User {
     private String username;
     private String password;
-    public User(String un, char[] pw) {
+    public User(String un, String pw) {
         this.username = un;
         this.password = pw.toString();
         
