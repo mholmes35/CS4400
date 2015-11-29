@@ -61,4 +61,3 @@ Todo:
 - [ ] start linking the fields to variables and pass to appropriate methods
 - [ ] start thinking about methods in the entities 
 - [ ] fix make reservation second screen
-- 
