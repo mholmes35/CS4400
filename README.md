@@ -29,13 +29,13 @@ Classes
 - [x] Choose Customer Functionality -Morgan
 - [x] Choose Manager Functionality -Morgan
 - [x] Find Rooms -Morgan
-- [ ] Make Reservation -- Ernest
-- [ ] Payment Information --Ernest
-- [ ] Confirmation Screne --Ernest
+- [x] Make Reservation -- Ernest
+- [x] Payment Information --Ernest
+- [x] Confirmation Screne --Ernest
 - [x] Update Reservation -Paul
 - [x] Cancel Reservation -Paul
-- [ ] View Review        -Christian
-- [ ] Provide Review     -Christian
+- [x] View Review        -Christian
+- [x] Provide Review     -Christian
 - [x] Reservation Report - Morgan
 - [x] View Popular Room Category Report - Morgan
 - [x] Revenue Report -Morgan
@@ -61,3 +61,20 @@ Todo:
 - [ ] start linking the fields to variables and pass to appropriate methods
 - [ ] start thinking about methods in the entities 
 - [ ] fix make reservation second screen
+ 
+Interfacing Database
+================
+- [x] Connect to database
+- [x] Create customer
+- [ ] Login (Handle if a customer or a manager)
+- [ ] Add Payment
+- [ ] Update Payment
+- [ ] Use Payment
+- [ ] Make Reservation
+- [ ] Cancel Reservation
+- [ ] Update Reservation
+- [ ] Find Rooms
+- [ ] View Reviews
+- [ ] View Popular Rooms
+- [ ] Create a review
+- [ ] Get Revenue Report
