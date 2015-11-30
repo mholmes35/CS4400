@@ -73,7 +73,7 @@ Interfacing Database
 - [ ] Cancel Reservation -- Ernest
 - [ ] Update Reservation
 - [ ] Find Rooms -- Ernest
-- [ ] View Reviews -- Paul 
-- [ ] View Popular Rooms
+- [x] View Reviews -- Paul
 - [x] Create a review -- Paul
+- [ ] View Popular Rooms
 - [ ] Get Revenue Report
