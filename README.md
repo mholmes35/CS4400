@@ -63,17 +63,17 @@ Todo:
  
 Interfacing Database
 ================
-- [x] Connect to database
-- [x] Create customer
-- [x] Login (Handle if a customer or a manager)
+- [x] Connect to database -- Paul
+- [x] Create customer -- Paul
+- [x] Login (Handle if a customer or a manager) -- Paul
 - [ ] Add Payment --Ernest
 - [ ] Update Payment
 - [ ] Use Payment
 - [ ] Make Reservation -- Ernest
-- [ ] Cancel Reservation --Ernest
+- [ ] Cancel Reservation -- Ernest
 - [ ] Update Reservation
 - [ ] Find Rooms -- Ernest
 - [ ] View Reviews -- Paul 
 - [ ] View Popular Rooms
-- [ ] Create a review -- Paul
+- [x] Create a review -- Paul
 - [ ] Get Revenue Report
