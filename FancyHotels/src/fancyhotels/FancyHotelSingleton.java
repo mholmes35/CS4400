@@ -8,6 +8,7 @@ package fancyhotels;
 import Entities.User;
 import Entities.Customer;
 import Entities.Manager;
+import Entities.Room;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -89,7 +90,7 @@ public class FancyHotelSingleton {
      * @param password Password for user
      * @param email Email address for user
      * @return status of account creation
-     * @throws SQLException in the case invalid sql command
+     * @throws SQLException in the case invalid SQL command
      */
     public static boolean createUser(String username, String password, 
             String email) throws SQLException {
@@ -121,10 +122,20 @@ public class FancyHotelSingleton {
         return status;
     }
     
-    public static int[] findRooms(String loc, String start_date, String end_date) {
+    /**
+     * Finds all of the rooms that fit the requested parameters
+     * @param loc The location of the room
+     * @param start_date Date of beginning of query
+     * @param end_date Date of end of query
+     * @return array of Room objects
+     * @throws SQLException in the case invalid SQL command
+     */
+    public static Room[] findRooms(String loc, String start_date, String end_date) 
+            throws SQLException {
         //TODO
-        int [] A = {1, 2, 3};
-        return A;
+        Room [] rooms;
+        return null;
+
     }
     
     /**
