@@ -66,7 +66,7 @@ Interfacing Database
 - [x] Connect to database -- Paul
 - [x] Create customer -- Paul
 - [x] Login (Handle if a customer or a manager) -- Paul
-- [ ] Add Payment --Ernest
+- [x] Add Payment --Ernest
 - [ ] Update Payment
 - [ ] Use Payment
 - [ ] Make Reservation -- Ernest
