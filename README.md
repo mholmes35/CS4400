@@ -70,11 +70,11 @@ Interfacing Database
 - [ ] Add Payment --Ernest
 - [ ] Update Payment
 - [ ] Use Payment
-- [ ] Make Reservation -- Ernet
+- [ ] Make Reservation -- Ernest
 - [ ] Cancel Reservation --Ernest
 - [ ] Update Reservation
-- [ ] Find Rooms
-- [ ] View Reviews
+- [ ] Find Rooms -- Paul
+- [ ] View Reviews -- Paul 
 - [ ] View Popular Rooms
-- [ ] Create a review
+- [ ] Create a review -- Paul
 - [ ] Get Revenue Report
