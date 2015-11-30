@@ -17,8 +17,8 @@ public class MakeReservationDetail extends javax.swing.JFrame {
     /**
      * Creates new form MakeReservationDetail
      */
-    public MakeReservationDetail(Customer user) {
-        this.user = user;
+    public MakeReservationDetail() {
+        //this.user = user;
         initComponents();
     }
 
@@ -179,7 +179,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         //get all the info from the elements
         //Reservation res = new Reservation(this.user);
         Reservation res = null; //to be deleted. 
-       new PaymentInformation(this.user, res).setVisible(true);
+       new PaymentInformation().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -212,7 +212,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MakeReservationDetail(null).setVisible(true);
+                new MakeReservationDetail().setVisible(true);
             }
         });
     }
