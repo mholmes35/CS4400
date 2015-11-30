@@ -1,12 +1,11 @@
-# CS4400
-Group 61
+# CS4400 Group 61
 
-Due Date
+Due Date(s)
 ================
-- Overall: December 2, 2015
+- Overall: December 1, 2015
 - All Entities: DONE.
-- All Views: TBD
-- Testing: TBD
+- All Views & SQL Statements: November 30, 2015
+- Testing: Dec 1, 2015
 
 Members
 ================
