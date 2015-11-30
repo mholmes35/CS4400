@@ -72,7 +72,7 @@ public class PaymentInformation extends javax.swing.JFrame {
             }
         });
 
-        expDateTextfield.setText("4/2018");
+        expDateTextfield.setText("yyyy-mm-dd");
         expDateTextfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 expDateTextfieldActionPerformed(evt);
@@ -86,7 +86,7 @@ public class PaymentInformation extends javax.swing.JFrame {
             }
         });
 
-        cvvTextfield.setText("111");
+        cvvTextfield.setToolTipText("111");
 
         jLabel7.setText("Card Number");
 
@@ -132,10 +132,11 @@ public class PaymentInformation extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(CardNumBox, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(expDateTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cvvTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(cvvTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(expDateTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(deleteButton)
                         .addGap(20, 20, 20))))
@@ -202,17 +203,16 @@ public class PaymentInformation extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        boolean added = false;
         String cardName = cardNameTextField.getText();
         String cardNum  = cardNumberTextfield.getText();
-        Date exp = new Date(Long.parseLong(expDateTextfield.getText()));
-        String cvv = cvvTextfield.getText();
+        String exp =  expDateTextfield.getText().trim();
+        String cvv = cvvTextfield.getText().trim();
         
-        if (cardName.equals("") /*|| cardNum*/ || exp.equals("") || cvv.equals("")) {
+        if (cardName.equals("") || cardNum.equals("") || exp.equals("") || cvv.equals("")) {
             System.out.println("No field can be empty");
         } else {
-            try{
-               added = singleton.addPayment(cardName, cardNum, exp, cvv);
+            try{            
+              boolean added = singleton.addPayment(cardName, cardNum, exp, cvv);
                if (added){
                    System.out.println("its true");
                 }

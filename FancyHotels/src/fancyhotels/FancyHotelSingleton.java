@@ -10,12 +10,12 @@ import Entities.Customer;
 import Entities.Manager;
 import Entities.Room;
 import Entities.HotelReview;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.Date;
+import java.sql.*;
+//import java.sql.DriverManager;
+//import java.sql.SQLException;
+//import java.sql.Statement;
+//import java.sql.ResultSet;
+//import java.sql.Date;
 import java.util.ArrayList;
 /**
  *
@@ -204,7 +204,7 @@ public class FancyHotelSingleton {
      * @throws SQLException in the case invalid SQL command
      */
     public static boolean addPayment(String cardName, String cardNum, 
-            Date expDate, String cvv) 
+            String expDate, String cvv) 
             throws SQLException {
         Statement stmt = null;
         try {
@@ -213,8 +213,10 @@ public class FancyHotelSingleton {
                     + "(Username, Name, Exp_Date, CVV, Card_number) values "
                     + "(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\")", 
                     databaseName, currentUser.getUsername(), 
-                    cardName, expDate.toString(), cvv, cardNum);
+                    cardName, expDate, cvv, cardNum);
+
             stmt.executeUpdate(s);
+            
             
             if (stmt != null) { 
                 stmt.close();    
