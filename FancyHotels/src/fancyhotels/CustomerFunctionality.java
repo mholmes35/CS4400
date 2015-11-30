@@ -144,7 +144,7 @@ public class CustomerFunctionality extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         //open view reviews screen
-        new ViewReview(this.user).setVisible(true);
+        new ViewReview().setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

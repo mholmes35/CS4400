@@ -136,7 +136,7 @@ public class ProvideReview extends javax.swing.JFrame {
     }//GEN-LAST:event_commentTextFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
         try {
             boolean status = singleton.createReview(commentTextField.getText(),
                     ratingComboBox1.getSelectedItem().toString(), 

@@ -11,11 +11,21 @@ package Entities;
  */
 public class HotelReview {
     private String comment;
-    private float rating;
+    private String rating;
     private String location; //should this be something else?
     private int reviewNum;
     private String cust_UN;
-
+    
+    public HotelReview(String un, String comment, String rating, String location, int reviewNum) {
+        
+        this.cust_UN = un;
+        this.comment = comment;
+        this.rating = rating;
+        this.location = location;
+        this.reviewNum = reviewNum;
+        
+    }
+        
     /**
      * @return the comment
      */
@@ -33,14 +43,14 @@ public class HotelReview {
     /**
      * @return the rating
      */
-    public float getRating() {
+    public String getRating() {
         return rating;
     }
 
     /**
      * @param rating the rating to set
      */
-    public void setRating(float rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 

@@ -9,12 +9,14 @@ import Entities.User;
 import Entities.Customer;
 import Entities.Manager;
 import Entities.Room;
+import Entities.HotelReview;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.Date;
+import java.util.ArrayList;
 /**
  *
  * @author pwilson3
@@ -255,6 +257,47 @@ public class FancyHotelSingleton {
         } catch (SQLException e) {
             System.err.println("Exception: " + e.getMessage());
             return false;
+        } 
+    }
+    
+    /**
+     * Creates a review on a hotel 
+     * @param comment Comment for the review
+     * @param rating Rating for the review
+     * @param location Location of the hotel for the review
+     * @return status of creating a review
+     * @throws SQLException in the case invalid SQL command
+     */
+    public static ArrayList<HotelReview> getReviews(String location) 
+            throws SQLException {
+        Statement stmt = null;
+        ArrayList<HotelReview> reviews = new ArrayList<HotelReview>();
+        
+        try {
+            stmt = conn.createStatement();
+            String s = String.format("select * from  %s .HOTEL_REVIEW "
+                    + "where Location=\"%s\"", 
+                    databaseName, location);
+
+            
+            ResultSet rs = stmt.executeQuery(s);
+            while (rs.next()) {
+                String uname = rs.getString("Username");
+                String comment = rs.getString("Comment");
+                String rating = rs.getString("Rating");
+                int rev_num = rs.getInt("Review_number");
+                reviews.add(new HotelReview(uname, comment, rating, location, rev_num));
+                
+            }
+            if (stmt != null) { 
+                stmt.close();
+                
+            } 
+            return reviews;
+            
+        } catch (SQLException e) {
+            System.err.println("getReviews \nException: " + e.getMessage());
+            return null;
         } 
     }
 }
