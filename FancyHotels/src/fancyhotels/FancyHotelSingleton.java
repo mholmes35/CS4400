@@ -124,21 +124,7 @@ public class FancyHotelSingleton {
         return status;
     }
     
-    /**
-     * Finds all of the rooms that fit the requested parameters
-     * @param loc The location of the room
-     * @param start_date Date of beginning of query
-     * @param end_date Date of end of query
-     * @return array of Room objects
-     * @throws SQLException in the case invalid SQL command
-     */
-    public static Room[] findRooms(String loc, String start_date, String end_date) 
-            throws SQLException {
-        //TODO
-        Room [] rooms;
-        return null;
 
-    }
     
     /**
      * Attempts to login with the credentials
@@ -261,7 +247,52 @@ public class FancyHotelSingleton {
             return false;
         } 
     }
-    
+        /**
+     * Finds all of the rooms that fit the requested parameters
+     * @param loc The location of the room
+     * @param start_date Date of beginning of query
+     * @param end_date Date of end of query
+     * @return array of Room objects
+     * @throws SQLException in the case invalid SQL command
+     */
+    public static ArrayList<Room> findRooms(String loc, String start_date, String end_date) 
+            throws SQLException {
+        Statement stmt = null;
+        ArrayList<Room> rooms = new ArrayList<Room>();
+        
+        try {
+           stmt = conn.createStatement();
+           String s = String.format("SELECT * FROM cs4400_Group_61.ROOM WHERE ROOM."
+                   + "Room_number IN (SELECT Room_number FROM cs4400_Group_61.HAS WHERE "
+                   + "HAS.ReservationID IN (SELECT ReservationID FROM cs4400_Group_61"
+                   + ".RESERVATION WHERE \"%s\" NOT BETWEEN RESERVATION."
+                   + "Start_Date AND RESERVATION.End_Date) AND \"%s\" = "
+                   + "HAS.Location)",start_date, loc);
+                  
+
+            
+            ResultSet rs = stmt.executeQuery(s);
+            while (rs.next()) {
+                int numPeople = rs.getInt("Number_of_people");
+                String category = rs.getString("Room_category");
+                Float cPD = rs.getFloat("Cost_per_day");
+                int roomNum = rs.getInt("Room_Number");
+                rooms.add(new Room(numPeople, category, cPD, roomNum, loc,
+                        false, 10.00f));
+                
+            }
+            if (stmt != null) { 
+                stmt.close();
+                
+            } 
+            return rooms;
+            
+        } catch (SQLException e) {
+            System.err.println("Find Rooms \nException: " + e.getMessage());
+            return null;
+        } 
+
+    }
     /**
      * Creates a review on a hotel 
      * @param comment Comment for the review

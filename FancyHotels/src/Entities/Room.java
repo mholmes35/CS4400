@@ -18,7 +18,18 @@ public class Room {
     private boolean extraBed;
     private float extraBedCost;
     
-    
+    public Room(int people, String category, float cPD, int num, String loc, 
+            boolean extra, float extraCost){
+        numPeople = people;
+        roomCategory = category;
+        costPerDay = cPD;
+        roomNumber = num;
+        location = loc;
+        extraBed = extra;
+        extraBedCost = extraCost;
+        
+        
+    }
     /**
      * @return the numPeople
      */

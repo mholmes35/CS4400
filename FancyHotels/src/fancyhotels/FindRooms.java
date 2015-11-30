@@ -57,14 +57,19 @@ public class FindRooms extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("mm/dd/yyyy");
+        jTextField1.setText("yyyy-mm-dd");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("mm/dd/yyyy");
+        jTextField2.setText("yyyy-mm-dd");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         cityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atlanta", "Charlotte", "Savannah", "Orlando", "Miami" }));
 
@@ -131,8 +136,8 @@ public class FindRooms extends javax.swing.JFrame {
         // TODO add your handling code here:
         //gather everything from the fields and then take to the rooms screen
         String location = String.valueOf(cityBox.getSelectedItem());
-        Date startDate = new Date(Integer.parseInt(jTextField1.getText()));
-        Date endDate = new Date(Integer.parseInt(jTextField2.getText()));
+        String startDate = jTextField1.getText();
+        String endDate = jTextField2.getText();
         MakeReservation makeReservation = new MakeReservation(location, startDate, endDate);
         makeReservation.setVisible(true);
         
@@ -143,6 +148,10 @@ public class FindRooms extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
