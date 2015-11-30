@@ -198,9 +198,9 @@ public class FancyHotelSingleton {
             stmt = conn.createStatement();
             String s = String.format("insert into %s .PAYMENT_INFORMATION "
                     + "(Username, Name, Exp_Date, CVV, Card_number) values "
-                    + "(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\")", 
+                    + "(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\" , \"%s\")", 
                     databaseName, currentUser.getUsername(), 
-                    cardName, expDate.toString(), cvv);
+                    cardName, expDate.toString(), cvv, cardNum);
             stmt.executeUpdate(s);
             
         } catch (SQLException e) {

@@ -6,18 +6,25 @@
 package fancyhotels;
 
 import Entities.Customer;
+import java.sql.Date;
 
 /**
  *
  * @author ernestwilliams
  */
 public class MakeReservation extends javax.swing.JFrame {
-    private Customer user;
+    FancyHotelSingleton singleton;
+    private static String location;
+    private static Date startDate;
+    private static Date endDate;
     /**
      * Creates new form MakeReservation
      */
-    public MakeReservation(Customer user) {
-        this.user = user;
+    public MakeReservation(String location, Date startDate, Date endDate) {
+        singleton = FancyHotelSingleton.getInstance();
+        this.location = location;
+        this.startDate = startDate;
+        this.endDate = endDate;
         initComponents();
     }
 
@@ -110,7 +117,7 @@ public class MakeReservation extends javax.swing.JFrame {
         // TODO add your handling code here:
         //open up modified make reservation screen
         //frame or panel?
-        new MakeReservationDetail(this.user).setVisible(true);
+        new MakeReservationDetail().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -143,7 +150,7 @@ public class MakeReservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MakeReservation(null).setVisible(true);
+                new MakeReservation(location, startDate, endDate).setVisible(true);
             }
         });
     }

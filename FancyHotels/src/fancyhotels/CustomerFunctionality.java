@@ -116,8 +116,8 @@ public class CustomerFunctionality extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //open make a reservation screen
-        MakeReservation makeReservation = new MakeReservation(this.user);
-        makeReservation.setVisible(true); 
+        PaymentInformation findRooms = new PaymentInformation();
+        findRooms.setVisible(true); 
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
