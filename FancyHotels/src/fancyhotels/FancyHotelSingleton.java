@@ -192,7 +192,18 @@ public class FancyHotelSingleton {
         return false;
     }
     
-    public static boolean addPayment(String cardName, String cardNum, Date expDate, String cvv) throws SQLException {
+    /**
+     * Adds a payment object for the current user
+     * @param cardName Name on the card
+     * @param cardNum Card Number
+     * @param expDate Date object of when the card expires
+     * @param cvv String of CVV code on back of card
+     * @return status of adding payment option
+     * @throws SQLException in the case invalid SQL command
+     */
+    public static boolean addPayment(String cardName, String cardNum, 
+            Date expDate, String cvv) 
+            throws SQLException {
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
@@ -203,15 +214,47 @@ public class FancyHotelSingleton {
                     cardName, expDate.toString(), cvv, cardNum);
             stmt.executeUpdate(s);
             
+            if (stmt != null) { 
+                stmt.close();    
+            } 
+            return true;
+            
         } catch (SQLException e) {
             System.err.println("Exception: " + e.getMessage());
-        } finally {
+            return false;
+        }
+    }
+
+    /**
+     * Creates a review on a hotel 
+     * @param comment Comment for the review
+     * @param rating Rating for the review
+     * @param location Location of the hotel for the review
+     * @return status of creating a review
+     * @throws SQLException in the case invalid SQL command
+     */
+    public static boolean createReview(String comment, String rating, 
+            String location) 
+            throws SQLException {
+        Statement stmt = null;
+        try {
+            stmt = conn.createStatement();
+            String s = String.format("insert into %s .HOTEL_REVIEW "
+                    + "(Username, Comment, Rating, Location) values "
+                    + "(\"%s\", \"%s\", \"%s\", \"%s\")", 
+                    databaseName, currentCustomer.getUsername(), 
+                    comment, rating, location);
+            stmt.executeUpdate(s);
+            
             if (stmt != null) { 
                 stmt.close();
-                return true;
-            } else {
-                return false;
-            }
-        }
+                
+            } 
+            return true;
+            
+        } catch (SQLException e) {
+            System.err.println("Exception: " + e.getMessage());
+            return false;
+        } 
     }
 }
