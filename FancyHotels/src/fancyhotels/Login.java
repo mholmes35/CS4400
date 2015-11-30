@@ -8,24 +8,24 @@ package fancyhotels;
 import Entities.Customer;
 import Entities.Manager;
 import Entities.User;
+import java.sql.SQLException;
 
 /**
  *
  * @author morganholmes
  */
 public class Login extends javax.swing.JFrame {
+
     FancyHotelSingleton singleton;
 
-    
     /**
      * Creates new form Login
-  
+     *
      */
-    
     public Login() {
         singleton = FancyHotelSingleton.getInstance();
         initComponents();
-        
+
     }
 
     /**
@@ -133,47 +133,44 @@ public class Login extends javax.swing.JFrame {
         //checkValisUser() ?
         //if valid, then the choose functionality screen should pop up
         //check is manager or is customer. 
-        
-        
-        
-       String uname = jTextField1.getText();
-       String pw = jPasswordField1.getText();
-       
+
+        String uname = jTextField1.getText();
+        String pw = jPasswordField1.getText();
+
         if (uname.equals("") || pw.equals("")) {
             System.out.println("Username or password cannot be empty");
         } else {
-            String type = singleton.login(uname, pw);
-            
-            System.out.println("Type returned " + type + " with uname " + uname + " and pw " + pw);
-            if(type == null) {
-                System.out.println("User does not exist");
-            }else if (type.equals("c")) {
-                // Type is a customer
-                Customer cust = singleton.getCustomer();
-                CustomerFunctionality newcustFunc = new CustomerFunctionality(cust);
-                newcustFunc.setVisible(true); 
-                
-            } else if(type.equals("m")) {
-                // Type is a manager
-                ManagerFunctionality newmanagFunc = new ManagerFunctionality();
-                newmanagFunc.setVisible(true);
-            } else {
-                // User does not exist
-                System.out.println("User does not exist");
-                
+            try {
+                String type = singleton.login(uname, pw);
+
+                System.out.println("Type returned " + type + " with uname " + uname + " and pw " + pw);
+                if (type == null) {
+                    System.out.println("User does not exist");
+                } else if (type.equals("c")) {
+                    // Type is a customer
+                    Customer cust = singleton.getCustomer();
+                    CustomerFunctionality newcustFunc = new CustomerFunctionality(cust);
+                    newcustFunc.setVisible(true);
+
+                } else if (type.equals("m")) {
+                    // Type is a manager
+                    ManagerFunctionality newmanagFunc = new ManagerFunctionality();
+                    newmanagFunc.setVisible(true);
+                } else {
+                    // User does not exist
+                    System.out.println("User does not exist");
+
+                }
+            } catch (Exception e) {
+                System.err.println("Exception: " + e.getMessage());
             }
+
         }
-     
-       
-       
+
         //this needs to be a function in fancy hotels that just straight up returns a user
-        
-        
-       
         //loginForm.setvisible(false);
         //if manager
-         
-    
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -208,7 +205,7 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

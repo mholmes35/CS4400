@@ -23,13 +23,17 @@ public class FancyHotelSingleton {
     private static User currentUser;
     private static Customer currentCustomer;
     private static Manager currentManager;
-    
-    public static Connection conn;
-    public static String databaseName;
+    private static Connection conn;
+    private static String databaseName;
     
     protected FancyHotelSingleton() {
         // Exists only to defeat instantiation
     }
+    
+    /**
+     * Use to access the singleton
+     * @return sing FancyHotelSingleton object with current details
+     */
     public static FancyHotelSingleton getInstance() {
         if(instance == null) {
             instance = new FancyHotelSingleton();
@@ -40,14 +44,24 @@ public class FancyHotelSingleton {
         return instance;
     }
     
+    /**
+     * @return current customer object
+     */
     public Customer getCustomer() {
         return currentCustomer;
     }
     
+    /**
+     * @return current manager object
+     */
     public Manager getManager() {
         return currentManager;
     }
     
+    /**
+     * Attempt to connect to the MySQL database
+     * @return status of connection
+     */
     public static boolean connectToDB() throws SQLException {
         conn = null;
         
@@ -68,6 +82,15 @@ public class FancyHotelSingleton {
         }
     }
     
+    /**
+     * Attempt to create customer account with username, password and email 
+     * Returns status of account creation
+     * @param username username for user
+     * @param password Password for user
+     * @param email Email address for user
+     * @return status of account creation
+     * @throws SQLException in the case invalid sql command
+     */
     public static boolean createUser(String username, String password, 
             String email) throws SQLException {
         
@@ -76,19 +99,18 @@ public class FancyHotelSingleton {
             stmt = conn.createStatement();
             String s = String.format("insert into %s .CUSTOMER "
                     + "(Username, Password, Email) values "
-                    + "(\"C%s\", \"%s\", \"%s\")", databaseName, username, 
-                    password, email);
+                    + "(\"C%s\", \"%s\", \"%s\")", 
+                    databaseName, username, password, email);
             stmt.executeUpdate(s);
+            
+            if (stmt != null) { 
+                stmt.close();    
+            } 
+            return true;
             
         } catch (SQLException e) {
             System.err.println("Exception: " + e.getMessage());
-        } finally {
-            if (stmt != null) { 
-                stmt.close();
-                return true;
-            } else {
-                return false;
-            }
+            return false;
         }
     }
     
@@ -105,22 +127,31 @@ public class FancyHotelSingleton {
         return A;
     }
     
-    public static String login(String username, String password) {
+    /**
+     * Attempts to login with the credentials
+     * If success, sets the current user/manager/customer to properties
+     * @param username username for user
+     * @param password Password for user
+     * @return c user is a customer
+     * @return m user is a manger
+     * @return null user does not exist
+     * @throws SQLException in the case invalid SQL command
+     */
+    public static String login(String username, String password) 
+            throws SQLException {
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
             String s = String.format("select Username, Password, Email from "
                     + "%s .CUSTOMER where Username=\"%s\" and Password=\"%s\"", 
                     databaseName, username, password);
+            
             ResultSet rs = stmt.executeQuery(s);
             while (rs.next()) {
                 // Determine if customer or manager
                 String uname = rs.getString("Username");
                 String type = uname.substring(0, 1);
-                
-                System.out.println("Type is " + type);
                 currentUser = new User(uname, password);
-                System.out.println("Email: " + rs.getString("Email"));
                 
                 if (type.equals("C") || type.equals("c")) {
                     // User type customer
@@ -136,13 +167,11 @@ public class FancyHotelSingleton {
                         stmt.close();
                     } 
                     return "m";
-                    
-                }
-                
+                }   
             }
-            
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println("Exception: " + e.getMessage());
+            return null;
         } 
         return null;
     }
