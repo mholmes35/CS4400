@@ -75,6 +75,6 @@ Interfacing Database
 - [x] Find Rooms -- Ernest
 - [x] View Reviews -- Paul
 - [x] Create a review -- Paul
-- [ ] View Popular Rooms -- Christian/Paul
+- [x] View Popular Rooms -- Christian/Paul
 - [x] Get Revenue Report -- Christian/Paul
 - [ ] Get Reservation Report -- Christian/Paul
