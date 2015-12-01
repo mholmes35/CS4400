@@ -179,7 +179,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         //get all the info from the elements
         //Reservation res = new Reservation(this.user);
         Reservation res = null; //to be deleted. 
-       new PaymentInformation().setVisible(true);
+       new PaymentInformationScreen().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
