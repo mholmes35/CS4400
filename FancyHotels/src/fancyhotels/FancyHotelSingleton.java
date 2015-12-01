@@ -20,6 +20,7 @@ import Entities.PaymentInformation;
 import Entities.Reservation;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.text.SimpleDateFormat;
 /**
  *
@@ -155,15 +156,28 @@ public class FancyHotelSingleton {
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
-            String s = String.format("select Username, Password, Email from "
+            String s;
+            String type = username.substring(0, 1);
+            if (type.equals("C") || type.equals("c")) {
+                s = String.format("select Username, Password, Email from "
                     + "%s .CUSTOMER where Username=\"%s\" and Password=\"%s\"", 
                     databaseName, username, password);
+            } else if (type.equals("M") || type.equals("m")) {
+                
+                s = String.format("select Username, Password from "
+                    + "%s .MANAGER where Username=\"%s\" and Password=\"%s\"", 
+                    databaseName, username, password);
+            } else {
+                return null;
+            }
+            
             
             ResultSet rs = stmt.executeQuery(s);
             while (rs.next()) {
+                System.out.println("Found something");
                 // Determine if customer or manager
                 String uname = rs.getString("Username");
-                String type = uname.substring(0, 1);
+                
                 currentUser = new User(uname, password);
                 
                 if (type.equals("C") || type.equals("c")) {
@@ -494,6 +508,44 @@ public class FancyHotelSingleton {
         } 
     }
     
-    
+    public static ArrayList<HashMap> getRevenueReport() throws SQLException {
+        Statement stmt = null;
+                
+        try {
+            ArrayList<HashMap> results = new ArrayList<HashMap>();
+            stmt = conn.createStatement();
+            String s = String.format("select MONTH(Start_Date) as mon, Location, SUM(Total_Cost) as totalCost from HAS Natural Join RESERVATION \n" +
+                "where not Is_Cancelled\n" +
+                "group by Location, mon \n" +
+                "order by mon;");
+                
+
+            
+            ResultSet rs = stmt.executeQuery(s);
+            while (rs.next()) {
+                HashMap hm = new HashMap();
+                
+                int mon = rs.getInt("mon");
+                String loc = rs.getString("Location");
+                int cost = rs.getInt("totalCost");
+                
+                hm.put("Month", new Integer(mon));
+                hm.put("Location", loc);
+                hm.put("Cost", new Integer(cost));
+                        
+                results.add(hm);
+                
+            }
+            
+            if (stmt != null) { 
+                stmt.close();
+            } 
+             return results;
+            
+        } catch (SQLException e) {
+            System.err.println("getReviews \nException: " + e.getMessage());
+            return null;
+        } 
+    }
     
 }

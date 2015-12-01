@@ -4,18 +4,85 @@
  * and open the template in the editor.
  */
 package fancyhotels;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author morganholmes
  */
 public class RevenueReport extends javax.swing.JFrame {
-
+    FancyHotelSingleton singleton;
     /**
      * Creates new form RevenueReport
      */
     public RevenueReport() {
+        singleton = FancyHotelSingleton.getInstance();
         initComponents();
+        try{
+            ArrayList<HashMap> reports = singleton.getRevenueReport();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            for (HashMap report: reports) {
+                int mon = ((Integer)report.get("Month")).intValue();
+                String mString = getMonthString(mon);
+                String loc = (String)report.get("Location");
+                int cost = ((Integer)report.get("Cost")).intValue();
+
+                model.addRow(new Object[]{mString, loc, cost});
+
+            }
+        }catch(Exception e) {
+            System.out.println("Exception: " + e);
+            // TODO: Handle case where failure in creating revoew
+        }
+        
+    }
+    
+    private static String getMonthString(int month) {
+        String ret;
+        switch(month){
+            case 1:
+                ret="January";
+                break;
+            case 2:
+                ret="February";
+                break;
+            case 3:
+                ret="March";
+                break;
+            case 4:
+                ret="April";
+                break;
+            case 5:
+                ret="May";
+                break;
+            case 6:
+                ret="June";
+                break;
+            case 7:
+                ret="July";
+                break;
+            case 8:
+                ret="August";
+                break;
+            case 9:
+                ret="September";
+                break;
+            case 10:
+                ret="October";
+                break;
+            case 11:
+                ret="November";
+                break;
+            case 12:
+                ret="December";
+                break;
+            default:
+                ret=null;
+                break;
+        }
+        return ret;
     }
 
     /**
