@@ -164,7 +164,7 @@ public class FancyHotelSingleton {
                     databaseName, username, password);
             } else if (type.equals("M") || type.equals("m")) {
                 s = String.format("select Username, Password from "
-                    + "%s .MANAGER where Username=\"%s\" and Password=%s", 
+                    + "%s .MANAGER where Username=\"%s\" and Password=\"%s\"",
                     databaseName, username, password);
             } else {
                 return null;
@@ -371,9 +371,11 @@ public class FancyHotelSingleton {
             String x = String.format("Select * from ROOM where Room_Number not "
                     + "in (Select Room_number from (select * from ROOM natural"
                     + " join RESERVATION natural join HAS) y Where Location = "
-                    + "\"%s\" and not Is_Cancelled and \"%s\" between "
-                    + "y.Start_Date and y.End_Date) and Location = \"%s\""
-                    ,start_date, loc,loc);
+                    + "\"%s\" and not Is_Cancelled and (Start_Date between \"%s\""
+                    + " and \"%s\" or \"%s\" between Start_Date and End_Date"
+                    + " or \"%s\" between Start_Date and End_Date )) and Location"
+                    + " = \"%s\""
+                    ,loc,start_date,end_date,start_date,end_date,loc);
             
             ResultSet rs = stmt.executeQuery(x);
             while (rs.next()) {
