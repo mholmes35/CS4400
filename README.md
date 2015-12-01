@@ -67,11 +67,11 @@ Interfacing Database
 - [x] Create customer -- Paul
 - [x] Login (Handle if a customer or a manager) -- Paul
 - [x] Add Payment --Ernest
-- [ ] Update Payment --
-- [ ] Use Payment
+- [ ] Update Payment -- Paul
+- [ ] Use Payment -- Ernest
 - [ ] Make Reservation -- Ernest
 - [ ] Cancel Reservation -- Ernest
-- [ ] Update Reservation --
+- [ ] Update Reservation -- Paul
 - [x] Find Rooms -- Ernest
 - [x] View Reviews -- Paul
 - [x] Create a review -- Paul
