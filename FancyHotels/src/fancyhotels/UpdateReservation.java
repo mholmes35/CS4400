@@ -6,6 +6,7 @@
 package fancyhotels;
 
 import Entities.Customer;
+import Entities.Reservation;
 
 /**
  *
@@ -13,12 +14,19 @@ import Entities.Customer;
  */
 public class UpdateReservation extends javax.swing.JFrame {
     private Customer user;
+    FancyHotelSingleton singleton;
     /**
      * Creates new form UpdateReservation
      */
-    public UpdateReservation(Customer user) {
-        this.user = user;
+    public UpdateReservation() {
+        singleton = FancyHotelSingleton.getInstance();
         initComponents();
+    }
+    
+    public UpdateReservation(Customer user) {
+        super();
+        this.user = user;
+        
     }
 
    
@@ -33,8 +41,8 @@ public class UpdateReservation extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        reservationIDTextfield = new javax.swing.JTextField();
+        searchReservationButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cStartDateTextfield = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -47,36 +55,39 @@ public class UpdateReservation extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        updatedCostTextfield = new javax.swing.JTextField();
+        submitButton = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel6.setText("Reservation ID");
 
-        jTextField1.setText("12345");
-
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchReservationButton.setText("Search");
+        searchReservationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                searchReservationButtonActionPerformed(evt);
             }
         });
 
         jLabel7.setText("Current Start Date");
 
-        cStartDateTextfield.setText("01/05/1994");
+        cStartDateTextfield.setText("YYYY-MM-DD");
 
         jLabel8.setText("Current End Date");
 
-        cEndDateTextfield.setText("01/06/1994");
+        cEndDateTextfield.setText("YYYY-MM-DD");
+        cEndDateTextfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cEndDateTextfieldActionPerformed(evt);
+            }
+        });
 
-        nEndDate.setText("01/07/1994");
+        nEndDate.setText("YYYY-MM-DD");
 
         jLabel9.setText("New End Date");
 
-        nStartDateTextfield.setText("01/06/1994");
+        nStartDateTextfield.setText("YYYY-MM-DD");
         nStartDateTextfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nStartDateTextfieldActionPerformed(evt);
@@ -86,6 +97,11 @@ public class UpdateReservation extends javax.swing.JFrame {
         jLabel10.setText("New Start Date");
 
         searchAvailabilityButton.setText("Search Availability");
+        searchAvailabilityButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchAvailabilityButtonActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,17 +126,17 @@ public class UpdateReservation extends javax.swing.JFrame {
 
         jLabel11.setText("Total Updated Cost");
 
-        jTextField6.setText("$100.00");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        updatedCostTextfield.setText("$100.00");
+        updatedCostTextfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                updatedCostTextfieldActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Submit");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                submitButtonActionPerformed(evt);
             }
         });
 
@@ -141,15 +157,15 @@ public class UpdateReservation extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cStartDateTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nStartDateTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(359, Short.MAX_VALUE))
+                        .addContainerGap(347, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(reservationIDTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(72, 72, 72)
-                                .addComponent(jButton1))
+                                .addComponent(searchReservationButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -167,18 +183,17 @@ public class UpdateReservation extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(updatedCostTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)
-                                .addContainerGap())))))
+                                .addComponent(submitButton)))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(208, 208, 208)
                 .addComponent(searchAvailabilityButton)
@@ -190,8 +205,8 @@ public class UpdateReservation extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(reservationIDTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchReservationButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -213,29 +228,57 @@ public class UpdateReservation extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(updatedCostTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submitButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void searchReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchReservationButtonActionPerformed
+       // Get information on reservation
+       try {
+            String reservationIDString = reservationIDTextfield.getText();
+            int id = Integer.parseInt(reservationIDString);
+            Reservation r = singleton.getReservation(id);
+            if (r == null) {
+               System.out.println("No reservation found with mentioned params");
+               return;
+           }
+            
+            // Update the start and end date textboxes
+            cStartDateTextfield.setText(r.getStartDate().toString());
+            cEndDateTextfield.setText(r.getEndDate().toString());
+            
+       } catch(Exception e) {
+            System.out.println("Search Reservation \nException: " + e);
+            // TODO: Handle case where failure in creating revoew
+       }
+    }//GEN-LAST:event_searchReservationButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_submitButtonActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void updatedCostTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatedCostTextfieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_updatedCostTextfieldActionPerformed
 
     private void nStartDateTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nStartDateTextfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nStartDateTextfieldActionPerformed
+
+    private void searchAvailabilityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAvailabilityButtonActionPerformed
+        // Take in the start date and end date and find the rooms
+        String nStartDateString = nStartDateTextfield.getText();
+        String nEndDateString = nEndDate.getText();
+        
+    }//GEN-LAST:event_searchAvailabilityButtonActionPerformed
+
+    private void cEndDateTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cEndDateTextfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cEndDateTextfieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,41 +318,21 @@ public class UpdateReservation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cEndDateTextfield;
     private javax.swing.JTextField cStartDateTextfield;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField nEndDate;
     private javax.swing.JTextField nStartDateTextfield;
     private javax.swing.JTextField reservationIDTextfield;
-    private javax.swing.JTextField reservationIDTextfield1;
-    private javax.swing.JTextField reservationIDTextfield2;
-    private javax.swing.JTextField reservationIDTextfield3;
-    private javax.swing.JTextField reservationIDTextfield4;
     private javax.swing.JButton searchAvailabilityButton;
-    private javax.swing.JButton searchButton;
-    private javax.swing.JButton searchButton1;
-    private javax.swing.JButton searchButton2;
-    private javax.swing.JButton searchButton3;
-    private javax.swing.JButton searchButton4;
+    private javax.swing.JButton searchReservationButton;
+    private javax.swing.JButton submitButton;
+    private javax.swing.JTextField updatedCostTextfield;
     // End of variables declaration//GEN-END:variables
 }

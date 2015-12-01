@@ -67,7 +67,11 @@ Interfacing Database
 - [x] Create customer -- Paul
 - [x] Login (Handle if a customer or a manager) -- Paul
 - [x] Add Payment --Ernest
+<<<<<<< HEAD
 - [ ] Update Payment -- Paul
+=======
+- [x] Delete Payment -- Paul
+>>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
 - [ ] Use Payment -- Ernest
 - [ ] Make Reservation -- Ernest
 - [ ] Cancel Reservation -- Ernest

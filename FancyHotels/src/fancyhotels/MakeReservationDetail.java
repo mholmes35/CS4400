@@ -217,6 +217,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
 
     private void updateCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCostActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         Float cost = 0.0f;
         DefaultTableModel model = (DefaultTableModel) chosenRoomsTable.getModel();
         int numRows = model.getRowCount();
@@ -229,6 +230,13 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         }
         costField.setText(cost.toString());
     }//GEN-LAST:event_updateCostActionPerformed
+=======
+        //get all the info from the elements
+        //Reservation res = new Reservation(this.user);
+        Reservation res = null; //to be deleted. 
+       new PaymentInformationScreen().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+>>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
 
     /**
      * @param args the command line arguments

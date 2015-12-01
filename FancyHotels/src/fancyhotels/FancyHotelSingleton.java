@@ -5,11 +5,21 @@
  */
 package fancyhotels;
 
+<<<<<<< HEAD
 import Entities.*;
 //import Entities.Customer;
 //import Entities.Manager;
 //import Entities.Room;
 //import Entities.HotelReview;
+=======
+import Entities.User;
+import Entities.Customer;
+import Entities.Manager;
+import Entities.Room;
+import Entities.HotelReview;
+import Entities.PaymentInformation;
+import Entities.Reservation;
+>>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
 import java.sql.*;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
@@ -58,6 +68,13 @@ public class FancyHotelSingleton {
      */
     public Manager getManager() {
         return currentManager;
+    }
+    
+    /**
+     * @return connection object
+     */
+    public Connection getConnection() {
+        return conn;
     }
     
     /**
@@ -233,6 +250,48 @@ public class FancyHotelSingleton {
             return false;
         }
     }
+    
+    /**
+     * Finds all credit cards associated with the user
+     * @param uname the username for the query     
+     * @return array of Room objects
+     * @throws SQLException in the case invalid SQL command
+     */
+    public static ArrayList<PaymentInformation> getPaymentInformation() 
+            throws SQLException {
+        Statement stmt = null;
+        ArrayList<PaymentInformation> options = new ArrayList<PaymentInformation>();
+        String uname = currentCustomer.getUsername();
+        
+        try {
+           stmt = conn.createStatement();
+           String s = String.format("select * from  %s .PAYMENT_INFORMATION "
+                    + "where Username=\"%s\"", 
+                    databaseName, uname);
+                  
+            ResultSet rs = stmt.executeQuery(s);
+            while (rs.next()) {
+                String name = rs.getString("Name");
+                Date exp_date = rs.getDate("Exp_date");
+                int cvv = rs.getInt("CVV");
+                String c_num = rs.getString("Card_number");
+                
+                options.add(new PaymentInformation(name, exp_date, cvv, c_num, 
+                        uname));
+                
+            }
+            if (stmt != null) { 
+                stmt.close();
+                
+            } 
+            return options;
+            
+        } catch (SQLException e) {
+            System.err.println("Find Rooms \nException: " + e.getMessage());
+            return null;
+        } 
+
+    }
 
     /**
      * Creates a review on a hotel 
@@ -266,7 +325,8 @@ public class FancyHotelSingleton {
             return false;
         } 
     }
-        /**
+    
+    /**
      * Finds all of the rooms that fit the requested parameters
      * @param loc The location of the room
      * @param start_date Date of beginning of query
@@ -309,9 +369,9 @@ public class FancyHotelSingleton {
             System.err.println("Find Rooms \nException: " + e.getMessage());
             return null;
         } 
-
     }
     
+<<<<<<< HEAD
     public static float countDays(String startDate, String endDate){
          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
          try{
@@ -357,12 +417,12 @@ public class FancyHotelSingleton {
         }
         
     }
+=======
+>>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
     /**
-     * Creates a review on a hotel 
-     * @param comment Comment for the review
-     * @param rating Rating for the review
+     * Retrieves hotel reviews based on location
      * @param location Location of the hotel for the review
-     * @return status of creating a review
+     * @return ArrayList of HotelReview Objects
      * @throws SQLException in the case invalid SQL command
      */
     public static ArrayList<HotelReview> getReviews(String location) 
@@ -397,4 +457,47 @@ public class FancyHotelSingleton {
             return null;
         } 
     }
+    
+    /**
+     * Retrieves reservations based on reservation_id
+     * @param reservation_id 
+     * @return reservation object if found, otherwise null
+     * @throws SQLException in the case invalid SQL command
+     */
+    public static Reservation getReservation(int reservation_id) 
+            throws SQLException {
+        Statement stmt = null;
+                
+        try {
+            Reservation r = null;
+            stmt = conn.createStatement();
+            String s = String.format("select * from  %s .RESERVATION "
+                    + "where ReservationID=%d", 
+                    databaseName, reservation_id);
+
+            
+            ResultSet rs = stmt.executeQuery(s);
+            while (rs.next()) {
+                Date sDate = rs.getDate("Start_Date");
+                Date eDate = rs.getDate("End_Date");
+                int isCancelled = rs.getInt("Is_Cancelled");
+                float totalCost = rs.getFloat("Total_Cost");
+                String cNum = rs.getString("Card_Number");
+                r = new Reservation(sDate, eDate, isCancelled==1, totalCost, cNum, currentCustomer.getUsername());
+                
+                
+            }
+            if (stmt != null) { 
+                stmt.close();
+            } 
+             return r;
+            
+        } catch (SQLException e) {
+            System.err.println("getReviews \nException: " + e.getMessage());
+            return null;
+        } 
+    }
+    
+    
+    
 }

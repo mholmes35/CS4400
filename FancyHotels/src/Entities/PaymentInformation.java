@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Entities;
+import java.sql.Date;
 
 /**
  *
@@ -11,10 +12,11 @@ package Entities;
  */
 public class PaymentInformation {
     private String pName;
-    private String expDate;
+    private Date expDate;
     private int cvv;
     private String cardNum;
     private String c_Username;
+<<<<<<< HEAD
 
    public PaymentInformation(String cardName, String exp, int cvv, 
         String cardNum, String username) {
@@ -25,6 +27,18 @@ public class PaymentInformation {
         c_Username = username;
     
     }
+=======
+    
+    public PaymentInformation(String pName, Date expDate, int cvv, 
+            String cardNum, String c_Username) {
+        this.pName = pName;
+        this.expDate = expDate;
+        this.cvv = cvv;
+        this.cardNum = cardNum;
+        this.c_Username = c_Username;
+    }
+    
+>>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
     /**
      * @return the pName
      */
@@ -42,14 +56,14 @@ public class PaymentInformation {
     /**
      * @return the expDate
      */
-    public String getExpDate() {
+    public Date getExpDate() {
         return expDate;
     }
 
     /**
      * @param expDate the expDate to set
      */
-    public void setExpDate(String expDate) {
+    public void setExpDate(Date expDate) {
         this.expDate = expDate;
     }
 
