@@ -90,6 +90,8 @@ public class ManagerFunctionality extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //take to reservation report
+        ReservationReport rReport = new ReservationReport();
+        rReport.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

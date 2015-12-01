@@ -610,4 +610,44 @@ public class FancyHotelSingleton {
         } 
     }
     
+    public static ArrayList<HashMap> getReservationReport() throws SQLException {
+        Statement stmt = null;
+                
+        try {
+            ArrayList<HashMap> results = new ArrayList<HashMap>();
+            stmt = conn.createStatement();
+            String s = String.format("select MONTH(Start_Date) "
+                    + "as mon, Location, "
+                    + "Count(ReservationID) as reservationCount "
+                    + "from HAS Natural Join RESERVATION \n "
+                    + "where not Is_Cancelled\n "
+                    + "group by Location, mon\n order by mon;");
+                            
+            ResultSet rs = stmt.executeQuery(s);
+            while (rs.next()) {
+                HashMap hm = new HashMap();
+                
+                int mon = rs.getInt("mon");
+                String loc = rs.getString("Location");
+                int count = rs.getInt("reservationCount");
+                
+                hm.put("Month", new Integer(mon));
+                hm.put("Location", loc);
+                hm.put("reservationCount", new Integer(count));
+                        
+                results.add(hm);
+                
+            }
+            
+            if (stmt != null) { 
+                stmt.close();
+            } 
+             return results;
+            
+        } catch (SQLException e) {
+            System.err.println("getReviews \nException: " + e.getMessage());
+            return null;
+        } 
+    }
+    
 }
