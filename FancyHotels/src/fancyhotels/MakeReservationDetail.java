@@ -22,6 +22,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
     private static String startDate;
     private static String endDate;
     private static float numDays;
+    private Float cost = 0.0f;  
     /**
      * Creates new form MakeReservationDetail
      */
@@ -34,7 +35,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         this.endDate = endDate;
         startField.setText(startDate);
         endField.setText(endDate);
-        Float cost = 0.0f;  
+        
         numDays = singleton.countDays(startDate, endDate);
         DefaultTableModel model = (DefaultTableModel) chosenRoomsTable.getModel();
         model.setRowCount(0);
@@ -207,7 +208,12 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         // TODO add your handling code here:
         //open payment info
         //make a reservation.
-        
+        String worked = singleton.makeReservation(chosenRooms, startDate, 
+                endDate, (String)cardBox.getSelectedItem(), cost);
+        if(worked != null){
+                Confirm confirm = new Confirm(worked); 
+                confirm.setVisible(true);
+        }
         
         //get all the info from the elements
         //Reservation res = new Reservation();
@@ -225,6 +231,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
             if(model.getValueAt(i,5) != null){
                 if((boolean)model.getValueAt(i, 5))
                 cost += 10.0f;
+                chosenRooms.get(i).setExtraBed(true);
             }
         }
         costField.setText(cost.toString());

@@ -46,21 +46,21 @@ Entity Types - Morgan
 - [x] Management
 - [x] Hotel Review
 - [x] Payment Information
-- [x] Room 
+- [x] Room
 - [x] Reservation
 - [x] Reserved Room
 - [x] R_Selects_Extra_Bed
 
 
 
-Todo: 
+Todo:
 - [ ] make titles on all the windows (easier to decode and such)
 - [ ] Make sure all buttons open the correct pages
 - [ ] start filling in constructors for entitities
 - [ ] start linking the fields to variables and pass to appropriate methods
-- [ ] start thinking about methods in the entities 
+- [ ] start thinking about methods in the entities
 - [ ] fix make reservation second screen
- 
+
 Interfacing Database
 ================
 - [x] Connect to database -- Paul
@@ -68,8 +68,8 @@ Interfacing Database
 - [x] Login (Handle if a customer or a manager) -- Paul
 - [x] Add Payment --Ernest
 - [x] Delete Payment -- Paul
-- [ ] Use Payment -- Ernest
-- [ ] Make Reservation -- Ernest
+- [x] Use Payment -- Ernest
+- [x] Make Reservation -- Ernest
 - [ ] Cancel Reservation -- Ernest
 - [ ] Update Reservation -- Paul
 - [x] Find Rooms -- Ernest
