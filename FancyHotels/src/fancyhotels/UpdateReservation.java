@@ -7,6 +7,9 @@ package fancyhotels;
 
 import Entities.Customer;
 import Entities.Reservation;
+import java.util.ArrayList;
+import Entities.Room;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +18,13 @@ import Entities.Reservation;
 public class UpdateReservation extends javax.swing.JFrame {
     private Customer user;
     FancyHotelSingleton singleton;
+    Reservation currentReservation;
     /**
      * Creates new form UpdateReservation
      */
     public UpdateReservation() {
         singleton = FancyHotelSingleton.getInstance();
+        currentReservation = null;
         initComponents();
     }
     
@@ -241,15 +246,15 @@ public class UpdateReservation extends javax.swing.JFrame {
        try {
             String reservationIDString = reservationIDTextfield.getText();
             int id = Integer.parseInt(reservationIDString);
-            Reservation r = singleton.getReservation(id);
-            if (r == null) {
+            currentReservation = singleton.getReservation(id);
+            if (currentReservation == null) {
                System.out.println("No reservation found with mentioned params");
                return;
            }
             
             // Update the start and end date textboxes
-            cStartDateTextfield.setText(r.getStartDate().toString());
-            cEndDateTextfield.setText(r.getEndDate().toString());
+            cStartDateTextfield.setText(currentReservation.getStartDate().toString());
+            cEndDateTextfield.setText(currentReservation.getEndDate().toString());
             
        } catch(Exception e) {
             System.out.println("Search Reservation \nException: " + e);
@@ -271,8 +276,30 @@ public class UpdateReservation extends javax.swing.JFrame {
 
     private void searchAvailabilityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAvailabilityButtonActionPerformed
         // Take in the start date and end date and find the rooms
+        
+        if (currentReservation == null) {
+            System.out.println("A valid reservation is necessary");
+            return;
+        }
+        
         String nStartDateString = nStartDateTextfield.getText();
         String nEndDateString = nEndDate.getText();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        try{
+            ArrayList<Room> rooms = singleton.findUpdatedRooms(nStartDateString,
+                    nEndDateString, currentReservation.getReservationID());
+            for (Room r: rooms) {
+                int rNum = r.getRoomNumber();
+                String cat = r.getRoomCategory();
+                int numPeople = r.getNumPeople();
+                float costPD = r.getCostPerDay();
+                float extraBedCost = r.getExtraBedCost();
+                
+                model.addRow(new Object[]{rNum, cat, numPeople, costPD, extraBedCost, false});
+            }
+            
+        } catch(Exception e) {}
+        
         
     }//GEN-LAST:event_searchAvailabilityButtonActionPerformed
 

@@ -394,7 +394,55 @@ public class FancyHotelSingleton {
         } catch (SQLException e) {
             System.err.println("Find Rooms \nException: " + e.getMessage());
             return null;
-        } 
+        }
+    }
+    
+    public static ArrayList<Room> findUpdatedRooms(String start_date, 
+            String end_date, int rID) 
+            throws SQLException {
+        
+        Statement stmt = null;
+        ArrayList<Room> rooms = new ArrayList<Room>();
+        
+        try {
+           stmt = conn.createStatement();
+                  
+            String x = String.format("Select * from ROOM natural join HAS "
+                    + "natural join RESERVATION where ReservationID = %d "
+                    + "and not exists\n (Select * from\n "
+                    + "(select * from ROOM natural join RESERVATION "
+                    + "natural join HAS Where not Is_Cancelled) y\n "
+                    + "where Room_number in (select Room_number from HAS "
+                    + "natural join RESERVATION where ReservationID = %d "
+                    + "and y.Location = Location)\n and "
+                    + "(Start_Date between \"%s\" and \"%s\" "
+                    + "or \"%s\" between Start_Date and End_Date "
+                    + "or \"%s\" between Start_Date and End_Date)\n "
+                    + "and ReservationID <> %d);", 
+                    rID,rID,start_date, end_date, start_date, end_date, rID);
+            
+            ResultSet rs = stmt.executeQuery(x);
+            while (rs.next()) {
+                int numPeople = rs.getInt("Number_of_people");
+                String category = rs.getString("Room_category");
+                Float cPD = rs.getFloat("Cost_per_day");
+                int roomNum = rs.getInt("Room_Number");
+                String loc = rs.getString("Location");
+                rooms.add(new Room(numPeople, category, cPD, roomNum, loc,
+                        false, 10.00f));
+                
+            }
+            if (stmt != null) { 
+                stmt.close();
+                
+            } 
+            return rooms;
+            
+        } catch (SQLException e) {
+            System.err.println("Find Rooms \nException: " + e.getMessage());
+            return null;
+        }
+    
     }
     
     public static float countDays(String startDate, String endDate){
@@ -517,7 +565,7 @@ public class FancyHotelSingleton {
              return r;
             
         } catch (SQLException e) {
-            System.err.println("getReviews \nException: " + e.getMessage());
+            System.err.println("Get Reservation Exception: " + e.getMessage());
             return null;
         } 
     }
@@ -557,7 +605,7 @@ public class FancyHotelSingleton {
              return results;
             
         } catch (SQLException e) {
-            System.err.println("getReviews \nException: " + e.getMessage());
+            System.err.println("Get Revenue Report Exception: " + e.getMessage());
             return null;
         } 
     }
@@ -603,7 +651,7 @@ public class FancyHotelSingleton {
              return results;
             
         } catch (SQLException e) {
-            System.err.println("getReviews \nException: " + e.getMessage());
+            System.err.println("Get Popular Rooms Exception: " + e.getMessage());
             return null;
         } 
     }
@@ -643,7 +691,7 @@ public class FancyHotelSingleton {
              return results;
             
         } catch (SQLException e) {
-            System.err.println("getReviews \nException: " + e.getMessage());
+            System.err.println("Reservation Report Exception: " + e.getMessage());
             return null;
         } 
     }
