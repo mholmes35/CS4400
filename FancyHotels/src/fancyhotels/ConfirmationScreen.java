@@ -13,13 +13,15 @@ import Entities.Reservation;
  * @author ernestwilliams
  */
 public class ConfirmationScreen extends javax.swing.JPanel {
-    private Customer user;
-    private Reservation res;
+    
+    private static String res;
     /**
      * Creates new form ConfirmationScreen
      */
-    public ConfirmationScreen(Customer user, Reservation res) {
+    public ConfirmationScreen(String res) {
         initComponents();
+        confirmField.setText(res);
+        this.res = res;
     }
 
     /**
@@ -31,14 +33,15 @@ public class ConfirmationScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        confirmField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        jTextField1.setText("11223344");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        confirmField.setEditable(false);
+        confirmField.setText("11223344");
+        confirmField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                confirmFieldActionPerformed(evt);
             }
         });
 
@@ -57,7 +60,7 @@ public class ConfirmationScreen extends javax.swing.JPanel {
                         .addGap(39, 39, 39)
                         .addComponent(jLabel1)
                         .addGap(71, 71, 71)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(confirmField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jLabel2)))
@@ -68,7 +71,7 @@ public class ConfirmationScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -76,14 +79,14 @@ public class ConfirmationScreen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void confirmFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_confirmFieldActionPerformed
 
-
+       
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField confirmField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

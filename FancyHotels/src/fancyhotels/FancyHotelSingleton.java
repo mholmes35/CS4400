@@ -203,28 +203,44 @@ public class FancyHotelSingleton {
         return null;
     }
     
-    public static boolean makeReservation(String username, int[] room_ids, String start_date, String end_date, String cardNum, Float totalCost) {
+    public static String makeReservation(ArrayList<Room> finalRooms, String start_date, String end_date, String cardNum, Float totalCost) {
         //TODO
+        ResultSet rs = null;
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
+            //create reservation
             String s = String.format("insert into %s .RESERVATION "
                     + "(Start_Date, End_Date, Is_Cancelled, Total_Cost, Card_Number) values "
                     + "(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\")", 
                     databaseName, start_date, end_date, 
                     "0", totalCost, cardNum);
-            stmt.executeUpdate(s);
-            s = String.format("");
-            
-            
+            stmt.executeUpdate(s, Statement.RETURN_GENERATED_KEYS);
+            //add has relationship
+            rs = stmt.getGeneratedKeys();
+            String confirmationID = "";
+            if (rs != null){
+                rs.next();
+                confirmationID = rs.getString(1);
+            }
+            for (Room curr : finalRooms){  
+                Integer currentRoom = curr.getRoomNumber();
+                String loc = curr.getLocation();
+                Boolean extraBed = curr.isExtraBed();
+                Integer ex = (extraBed) ? 1:0; 
+                s = String.format("insert into %s .HAS (ReservationID, Room_Number"
+                        + ", Location, Extra_Bed) values (\"%s\", \"%s\", \"%s\", "
+                        + "\"%s\")", databaseName, confirmationID, currentRoom.toString(), loc, ex.toString());
+                stmt.executeUpdate(s);
+            }
             if (stmt != null) { 
                 stmt.close();    
             } 
-            return true;
+            return confirmationID;
             
         } catch (SQLException e) {
             System.err.println("Exception: " + e.getMessage());
-            return false;
+            return null;
         }
     }
     
