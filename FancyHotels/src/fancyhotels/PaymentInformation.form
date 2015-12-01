@@ -51,10 +51,12 @@
                       <Component id="CardNumBox" min="-2" pref="64" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="expDateTextfield" min="-2" max="-2" attributes="0"/>
-                          <Component id="cvvTextfield" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="cvvTextfield" min="-2" pref="48" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="expDateTextfield" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
@@ -165,7 +167,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="expDateTextfield">
       <Properties>
-        <Property name="text" type="java.lang.String" value="4/2018"/>
+        <Property name="text" type="java.lang.String" value="yyyy-mm-dd"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="expDateTextfieldActionPerformed"/>
@@ -181,7 +183,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="cvvTextfield">
       <Properties>
-        <Property name="text" type="java.lang.String" value="111"/>
+        <Property name="toolTipText" type="java.lang.String" value="111"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="CardNumBox">

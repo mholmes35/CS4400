@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/Users/pwilson3/Dropbox/College/CS%204400/Final/CS4400/FancyHotels/src/fancyhotels/FancyHotelSingleton.java</file>
+=======
+            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/FancyHotelSingleton.java</file>
+            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/PaymentInformation.java</file>
+            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/Entities/HotelReview.java</file>
+>>>>>>> b90fa203b7418d23ded830208d7e3ffa33a86d17
         </group>
     </open-files>
 </project-private>
