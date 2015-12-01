@@ -8,11 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="FancyHotels.jar" size="96461" download="eager" />
-=======
-    <jar href="FancyHotels.jar" size="98513" download="eager" />
->>>>>>> b90fa203b7418d23ded830208d7e3ffa33a86d17
+    <jar href="FancyHotels.jar" size="108115" download="eager" />
     <jar href="lib/mysql-connector-java-5.1.37-bin.jar" size="985603" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="FancyHotels" >
