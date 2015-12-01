@@ -270,7 +270,7 @@ public class FancyHotelSingleton {
             ResultSet rs = stmt.executeQuery(s);
             while (rs.next()) {
                 String name = rs.getString("Name");
-                Date exp_date = rs.getDate("Exp_date");
+                String exp_date = rs.getDate("Exp_date").toString();
                 int cvv = rs.getInt("CVV");
                 String c_num = rs.getString("Card_number");
                 

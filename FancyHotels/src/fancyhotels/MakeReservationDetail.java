@@ -221,20 +221,14 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) chosenRoomsTable.getModel();
         int numRows = model.getRowCount();
         for (int i = 0; i < numRows; i++) {
+            cost += ((float)model.getValueAt(i,3) * numDays);
             if(model.getValueAt(i,5) != null){
-                cost += ((float)model.getValueAt(i,3) * numDays);
                 if((boolean)model.getValueAt(i, 5))
                 cost += 10.0f;
             }
         }
         costField.setText(cost.toString());
     }//GEN-LAST:event_updateCostActionPerformed
-        //get all the info from the elements
-        //Reservation res = new Reservation(this.user);
-        Reservation res = null; //to be deleted. 
-       new PaymentInformationScreen().setVisible(true);
-    }                                        
->>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
 
     /**
      * @param args the command line arguments

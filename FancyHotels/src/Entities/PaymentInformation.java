@@ -12,7 +12,7 @@ import java.sql.Date;
  */
 public class PaymentInformation {
     private String pName;
-    private Date expDate;
+    private String expDate;
     private int cvv;
     private String cardNum;
     private String c_Username;
@@ -26,7 +26,7 @@ public class PaymentInformation {
         c_Username = username;
     
     }
-    
+   /* 
     public PaymentInformation(String pName, Date expDate, int cvv, 
             String cardNum, String c_Username) {
         this.pName = pName;
@@ -34,7 +34,7 @@ public class PaymentInformation {
         this.cvv = cvv;
         this.cardNum = cardNum;
         this.c_Username = c_Username;
-    }
+    }*/
     
     /**
      * @return the pName
@@ -53,14 +53,14 @@ public class PaymentInformation {
     /**
      * @return the expDate
      */
-    public Date getExpDate() {
+    public String getExpDate() {
         return expDate;
     }
 
     /**
      * @param expDate the expDate to set
      */
-    public void setExpDate(Date expDate) {
+    public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
 
