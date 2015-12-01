@@ -163,9 +163,8 @@ public class FancyHotelSingleton {
                     + "%s .CUSTOMER where Username=\"%s\" and Password=\"%s\"", 
                     databaseName, username, password);
             } else if (type.equals("M") || type.equals("m")) {
-                
                 s = String.format("select Username, Password from "
-                    + "%s .MANAGER where Username=\"%s\" and Password=\"%s\"", 
+                    + "%s .MANAGER where Username=\"%s\" and Password=%s", 
                     databaseName, username, password);
             } else {
                 return null;
@@ -174,7 +173,6 @@ public class FancyHotelSingleton {
             
             ResultSet rs = stmt.executeQuery(s);
             while (rs.next()) {
-                System.out.println("Found something");
                 // Determine if customer or manager
                 String uname = rs.getString("Username");
                 
@@ -532,6 +530,52 @@ public class FancyHotelSingleton {
                 hm.put("Month", new Integer(mon));
                 hm.put("Location", loc);
                 hm.put("Cost", new Integer(cost));
+                        
+                results.add(hm);
+                
+            }
+            
+            if (stmt != null) { 
+                stmt.close();
+            } 
+             return results;
+            
+        } catch (SQLException e) {
+            System.err.println("getReviews \nException: " + e.getMessage());
+            return null;
+        } 
+    }
+    
+    public static ArrayList<HashMap> getPopularRoomReport() throws SQLException {
+        Statement stmt = null;
+                
+        try {
+            ArrayList<HashMap> results = new ArrayList<HashMap>();
+            stmt = conn.createStatement();
+            String s = String.format("Select mon, Room_category, Location, "
+                    + "roomCount from (select MONTH(Start_Date) as mon, "
+                    + "Room_category, Location, Count(Room_category) as "
+                    + "roomCount from HAS Natural Join RESERVATION "
+                    + "Natural Join ROOM \n" +
+                    "group by Location, MONTH(Start_Date), Room_category\n" +
+                    "order by Location, roomCount DESC) y\n" +
+                    "group by Location, mon;");
+                
+
+            
+            ResultSet rs = stmt.executeQuery(s);
+            while (rs.next()) {
+                HashMap hm = new HashMap();
+                
+                int mon = rs.getInt("mon");
+                String cat = rs.getString("Room_category");
+                String loc = rs.getString("Location");
+                int count = rs.getInt("roomCount");
+                
+                hm.put("Month", new Integer(mon));
+                hm.put("Room_category", cat);
+                hm.put("Location", loc);
+                hm.put("roomCount", new Integer(count));
                         
                 results.add(hm);
                 

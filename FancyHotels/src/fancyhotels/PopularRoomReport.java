@@ -4,18 +4,87 @@
  * and open the template in the editor.
  */
 package fancyhotels;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author morganholmes
  */
 public class PopularRoomReport extends javax.swing.JFrame {
-
+    FancyHotelSingleton singleton;
     /**
      * Creates new form PopularRoomReport
      */
     public PopularRoomReport() {
+        singleton = FancyHotelSingleton.getInstance();
         initComponents();
+        
+        try{
+            ArrayList<HashMap> reports = singleton.getPopularRoomReport();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            for (HashMap report: reports) {
+                int mon = ((Integer)report.get("Month"));
+                String mString = getMonthString(mon);
+                String loc = (String)report.get("Location");
+                String cat = (String)report.get("Room_category");
+                int count = ((Integer)report.get("roomCount"));
+
+                model.addRow(new Object[]{mString, cat, loc, count});
+
+            }
+        }catch(Exception e) {
+            System.out.println("Exception: " + e);
+            // TODO: Handle case where failure in creating revoew
+        }
+    }
+    
+    private static String getMonthString(int month) {
+        String ret;
+        switch(month){
+            case 1:
+                ret="January";
+                break;
+            case 2:
+                ret="February";
+                break;
+            case 3:
+                ret="March";
+                break;
+            case 4:
+                ret="April";
+                break;
+            case 5:
+                ret="May";
+                break;
+            case 6:
+                ret="June";
+                break;
+            case 7:
+                ret="July";
+                break;
+            case 8:
+                ret="August";
+                break;
+            case 9:
+                ret="September";
+                break;
+            case 10:
+                ret="October";
+                break;
+            case 11:
+                ret="November";
+                break;
+            case 12:
+                ret="December";
+                break;
+            default:
+                ret=null;
+                break;
+        }
+        return ret;
     }
 
     /**
@@ -69,6 +138,8 @@ public class PopularRoomReport extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
