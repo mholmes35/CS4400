@@ -7,14 +7,20 @@
     <offline-allowed/>
   </information>
   <resources>
-    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
-  </resources>
-  <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="FancyHotels.jar" size="98354" download="eager" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <jar href="FancyHotels.jar" size="101515" download="eager" />
+=======
+    <jar href="FancyHotels.jar" size="98513" download="eager" />
+    <jar href="lib/mysql-connector-java-5.1.37-bin.jar" size="985603" download="eager" />
+>>>>>>> 270c040f176899e3bebf352158821a18cbdc75ec
+=======
+    <jar href="FancyHotels.jar" size="98497" download="eager" />
+>>>>>>> 823972695335216a400afc0c12bce3646ee457d1
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="FancyHotels" >
-    <param name="requiredFXVersion" value="2.2+"/>
+    <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="fancyhotels.FancyHotels"  name="FancyHotels" />
   <update check="always"/>

@@ -5,18 +5,14 @@
  */
 package fancyhotels;
 
-import Entities.User;
-import Entities.Customer;
-import Entities.Manager;
-import Entities.Room;
-import Entities.HotelReview;
+import Entities.*;
+//import Entities.Customer;
+//import Entities.Manager;
+//import Entities.Room;
+//import Entities.HotelReview;
 import java.sql.*;
-//import java.sql.DriverManager;
-//import java.sql.SQLException;
-//import java.sql.Statement;
-//import java.sql.ResultSet;
-//import java.sql.Date;
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author pwilson3
@@ -47,6 +43,9 @@ public class FancyHotelSingleton {
         return instance;
     }
     
+    public void setCustomer(Customer cust){
+        currentCustomer = cust;
+    }
     /**
      * @return current customer object
      */
@@ -175,9 +174,29 @@ public class FancyHotelSingleton {
         return null;
     }
     
-    public static boolean makeReservation(String username, int[] room_ids, String start_date, String end_date) {
+    public static boolean makeReservation(String username, int[] room_ids, String start_date, String end_date, String cardNum, Float totalCost) {
         //TODO
-        return false;
+        Statement stmt = null;
+        try {
+            stmt = conn.createStatement();
+            String s = String.format("insert into %s .RESERVATION "
+                    + "(Start_Date, End_Date, Is_Cancelled, Total_Cost, Card_Number) values "
+                    + "(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\")", 
+                    databaseName, start_date, end_date, 
+                    "0", totalCost, cardNum);
+            stmt.executeUpdate(s);
+            s = String.format("");
+            
+            
+            if (stmt != null) { 
+                stmt.close();    
+            } 
+            return true;
+            
+        } catch (SQLException e) {
+            System.err.println("Exception: " + e.getMessage());
+            return false;
+        }
     }
     
     /**
@@ -262,16 +281,15 @@ public class FancyHotelSingleton {
         
         try {
            stmt = conn.createStatement();
-           String s = String.format("SELECT * FROM cs4400_Group_61.ROOM WHERE ROOM."
-                   + "Room_number IN (SELECT Room_number FROM cs4400_Group_61.HAS WHERE "
-                   + "HAS.ReservationID IN (SELECT ReservationID FROM cs4400_Group_61"
-                   + ".RESERVATION WHERE \"%s\" NOT BETWEEN RESERVATION."
-                   + "Start_Date AND RESERVATION.End_Date) AND \"%s\" = "
-                   + "HAS.Location)",start_date, loc);
                   
-
+            String x = String.format("Select * from ROOM where Room_Number not "
+                    + "in (Select Room_number from (select * from ROOM natural"
+                    + " join RESERVATION natural join HAS) y Where Location = "
+                    + "\"%s\" and not Is_Cancelled and \"%s\" between "
+                    + "y.Start_Date and y.End_Date) and Location = \"%s\""
+                    ,start_date, loc,loc);
             
-            ResultSet rs = stmt.executeQuery(s);
+            ResultSet rs = stmt.executeQuery(x);
             while (rs.next()) {
                 int numPeople = rs.getInt("Number_of_people");
                 String category = rs.getString("Room_category");
@@ -292,6 +310,52 @@ public class FancyHotelSingleton {
             return null;
         } 
 
+    }
+    
+    public static float countDays(String startDate, String endDate){
+         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+         try{
+            java.util.Date start = format.parse(startDate);
+            java.util.Date end = format.parse(endDate);
+            int days = (end.getDate() - start.getDate()) + 1;
+            return (float)days;
+         } catch (Exception e){
+               System.out.print("Error: " + e);
+               return 0.0f;
+         }
+         
+    }
+    
+    public static ArrayList<Entities.PaymentInformation> getUserCards(){
+        ArrayList<Entities.PaymentInformation> cards = new ArrayList<Entities.PaymentInformation>();
+        Statement stmt = null;
+        String user = currentCustomer.getUsername();
+        try {
+           stmt = conn.createStatement();
+           String s = String.format("SELECT * FROM cs4400_Group_61.PAYMENT_INFO"
+                   + "RMATION WHERE PAYMENT_INFORMATION.Username = \"%s\"",user);
+                  
+            ResultSet rs = stmt.executeQuery(s);
+            while (rs.next()) {
+                
+                String cardName = rs.getString("Name");
+                String exp = rs.getDate("Exp_date").toString();
+                int cvv = rs.getInt("CVV");
+                String cardNum = rs.getString("Card_number");
+                cards.add(new Entities.PaymentInformation(cardName, exp, cvv, cardNum, user));
+                
+            }
+            if (stmt != null) { 
+                stmt.close();
+                
+            } 
+            return cards;
+            
+        } catch (SQLException e) {
+            System.err.println("Payment info \nException: " + e.getMessage());
+            return null;
+        }
+        
     }
     /**
      * Creates a review on a hotel 

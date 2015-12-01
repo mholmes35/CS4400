@@ -148,6 +148,7 @@ public class Login extends javax.swing.JFrame {
                     System.out.println("User does not exist");
                 } else if (type.equals("c")) {
                     // Type is a customer
+                    singleton.setCustomer(new Customer(uname, pw, ""));
                     Customer cust = singleton.getCustomer();
                     CustomerFunctionality newcustFunc = new CustomerFunctionality(cust);
                     newcustFunc.setVisible(true);

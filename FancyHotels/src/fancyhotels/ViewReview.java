@@ -164,6 +164,7 @@ public class ViewReview extends javax.swing.JFrame {
         try {
             ArrayList<HotelReview> reviews = singleton.getReviews(location);
             DefaultTableModel model = (DefaultTableModel) ratingsTable.getModel();
+            model.setRowCount(0);
             for (HotelReview review: reviews) {
                 model.addRow(new Object[]{review.getRating(), review.getComment()});
                 

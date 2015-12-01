@@ -5,6 +5,8 @@
  */
 package fancyhotels;
 
+import Entities.Customer;
+
 /**
  *
  * @author morganholmes
@@ -142,6 +144,9 @@ public class NewUserForm extends javax.swing.JFrame {
         } else {
             try {
                 boolean status = singleton.createUser(jTextField2.getText(), jPasswordField1.getText(), jTextField3.getText()) ;
+                Customer curr = singleton.getCustomer();
+                CustomerFunctionality newcustFunc = new CustomerFunctionality(curr);
+                newcustFunc.setVisible(true);
             } catch(Exception e) {
                 System.out.println("Exception: " + e);
             }

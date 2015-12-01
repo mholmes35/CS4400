@@ -20,16 +20,22 @@ public class MakeReservation extends javax.swing.JFrame {
     private static String location;
     private static String startDate;
     private static String endDate;
+
     /**
      * Creates new form MakeReservation
      */
     public MakeReservation(String location, String startDate, String endDate) {
         singleton = FancyHotelSingleton.getInstance();
+        this.location = location;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        
         initComponents();
         try{
             ArrayList<Room> availableRooms = singleton.findRooms(location, 
                     startDate, endDate);
-            DefaultTableModel model = (DefaultTableModel) avTable.getModel();
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            model.setRowCount(0);
             for (Room room: availableRooms) {
                 model.addRow(new Object[]{room.getRoomNumber(),
                     room.getRoomCategory(),room.getNumPeople(),
@@ -55,10 +61,9 @@ public class MakeReservation extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         checkDetailsButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        avTable = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(480, 275));
 
         jLabel3.setText("Make a Reservation");
 
@@ -69,7 +74,7 @@ public class MakeReservation extends javax.swing.JFrame {
             }
         });
 
-        avTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -83,15 +88,22 @@ public class MakeReservation extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        avTable.setAlignmentX(0.0F);
-        avTable.setAlignmentY(0.0F);
-        avTable.setShowGrid(true);
-        jScrollPane2.setViewportView(avTable);
+        jTable2.setAlignmentX(0.0F);
+        jTable2.setAlignmentY(0.0F);
+        jTable2.setShowGrid(true);
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,8 +142,22 @@ public class MakeReservation extends javax.swing.JFrame {
         // TODO add your handling code here:
         //open up modified make reservation screen
         //frame or panel?
-        
-        new MakeReservationDetail().setVisible(true);
+        ArrayList<Room> chosenRooms = new ArrayList<Room>();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        int numRows = model.getRowCount();
+        for(int i =0; i < numRows; i++){
+            if(model.getValueAt(i,5) != null){
+                if((boolean)model.getValueAt(i,5)){
+                    int numPeople = (int)model.getValueAt(i,2);
+                    String category = (String)model.getValueAt(i,1);
+                    float cPD = (float)model.getValueAt(i,3);
+                    int roomNum = (int)model.getValueAt(i,0);
+                    chosenRooms.add(new Room(numPeople, category, cPD, roomNum, 
+                    location, false, 10.00f));
+                }
+            }
+        }
+        new MakeReservationDetail(chosenRooms, startDate, endDate).setVisible(true);
     }//GEN-LAST:event_checkDetailsButtonActionPerformed
 
     /**
@@ -170,9 +196,9 @@ public class MakeReservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable avTable;
     private javax.swing.JButton checkDetailsButton;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

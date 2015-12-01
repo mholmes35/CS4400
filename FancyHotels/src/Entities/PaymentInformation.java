@@ -13,9 +13,18 @@ public class PaymentInformation {
     private String pName;
     private String expDate;
     private int cvv;
-    private int cardNum;
+    private String cardNum;
     private String c_Username;
 
+   public PaymentInformation(String cardName, String exp, int cvv, 
+        String cardNum, String username) {
+        pName = cardName;
+        expDate = exp;
+        this.cvv = cvv;
+        this.cardNum = cardNum;
+        c_Username = username;
+    
+    }
     /**
      * @return the pName
      */
@@ -61,14 +70,14 @@ public class PaymentInformation {
     /**
      * @return the cardNum
      */
-    public int getCardNum() {
+    public String getCardNum() {
         return cardNum;
     }
 
     /**
      * @param cardNum the cardNum to set
      */
-    public void setCardNum(int cardNum) {
+    public void setCardNum(String cardNum) {
         this.cardNum = cardNum;
     }
 

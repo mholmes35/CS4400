@@ -67,13 +67,14 @@ Interfacing Database
 - [x] Create customer -- Paul
 - [x] Login (Handle if a customer or a manager) -- Paul
 - [x] Add Payment --Ernest
-- [ ] Update Payment --Morgan
-- [ ] Use Payment
+- [ ] Update Payment -- Paul
+- [ ] Use Payment -- Ernest
 - [ ] Make Reservation -- Ernest
 - [ ] Cancel Reservation -- Ernest
-- [ ] Update Reservation --Morgan
+- [ ] Update Reservation -- Paul
 - [x] Find Rooms -- Ernest
 - [x] View Reviews -- Paul
 - [x] Create a review -- Paul
-- [ ] View Popular Rooms
-- [ ] Get Revenue Report
+- [ ] View Popular Rooms -- Christian
+- [ ] Get Revenue Report -- Christian
+- [ ] Get Reservation Report -- Christian

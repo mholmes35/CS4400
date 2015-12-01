@@ -5,21 +5,57 @@
  */
 package fancyhotels;
 
-import Entities.Customer;
-import Entities.Reservation;
+import Entities.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultComboBoxModel;
+
+//import Entities.Reservation;
 
 /**
  *
  * @author morganholmes
  */
 public class MakeReservationDetail extends javax.swing.JFrame {
-    private Customer user;
+    private static ArrayList<Room> chosenRooms;
+    FancyHotelSingleton singleton;
+    private static String startDate;
+    private static String endDate;
+    private static float numDays;
     /**
      * Creates new form MakeReservationDetail
      */
-    public MakeReservationDetail() {
-        //this.user = user;
+    public MakeReservationDetail(ArrayList<Room> chosenRooms, String startDate,
+            String endDate) {
         initComponents();
+        singleton = FancyHotelSingleton.getInstance();
+        this.chosenRooms = chosenRooms;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        startField.setText(startDate);
+        endField.setText(endDate);
+        Float cost = 0.0f;  
+        numDays = singleton.countDays(startDate, endDate);
+        DefaultTableModel model = (DefaultTableModel) chosenRoomsTable.getModel();
+        model.setRowCount(0);
+        for (Room room: chosenRooms) {
+            model.addRow(new Object[]{room.getRoomNumber(),
+                room.getRoomCategory(),room.getNumPeople(),
+                room.getCostPerDay(),room.getExtraBedCost()});
+            cost += (room.getCostPerDay() * numDays);
+        }
+        ArrayList<Entities.PaymentInformation> cards = singleton.getUserCards();
+        String[] numOnly = new String[cards.size()];
+        for(int i = 0; i < cards.size(); i++){
+            numOnly[i] = cards.get(i).getCardNum();
+        }
+        DefaultComboBoxModel boxMod = new DefaultComboBoxModel(numOnly);
+        cardBox.setModel(boxMod);
+        cardBox.setMaximumRowCount(cards.size());
+        for(Entities.PaymentInformation card: cards){
+            cardBox.setSelectedIndex(WIDTH);
+        }
+        costField.setText(cost.toString());
     }
 
     /**
@@ -32,22 +68,22 @@ public class MakeReservationDetail extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        chosenRoomsTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cardBox = new javax.swing.JComboBox<>();
+        startField = new javax.swing.JTextField();
+        endField = new javax.swing.JTextField();
+        costField = new javax.swing.JTextField();
+        submitButton = new javax.swing.JButton();
+        updateCost = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        chosenRoomsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -66,10 +102,10 @@ public class MakeReservationDetail extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable2.setAlignmentX(0.0F);
-        jTable2.setAlignmentY(0.0F);
-        jTable2.setShowGrid(true);
-        jScrollPane2.setViewportView(jTable2);
+        chosenRoomsTable.setAlignmentX(0.0F);
+        chosenRoomsTable.setAlignmentY(0.0F);
+        chosenRoomsTable.setShowGrid(true);
+        jScrollPane2.setViewportView(chosenRoomsTable);
 
         jLabel1.setText("Start Date:");
 
@@ -79,25 +115,29 @@ public class MakeReservationDetail extends javax.swing.JFrame {
 
         jLabel4.setText("Use Card");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cardBox.setMaximumRowCount(100);
+        cardBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextField1.setText("jTextField1");
+        startField.setEditable(false);
+        startField.setText("jTextField1");
 
-        jTextField2.setText("jTextField2");
+        endField.setEditable(false);
+        endField.setText("jTextField2");
 
-        jTextField3.setText("jTextField3");
+        costField.setEditable(false);
+        costField.setText("jTextField3");
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                submitButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Add card?");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        updateCost.setText("Update Cost");
+        updateCost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                updateCostActionPerformed(evt);
             }
         });
 
@@ -115,24 +155,25 @@ public class MakeReservationDetail extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addComponent(cardBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(costField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(updateCost))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(startField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(endField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(submitButton)
                 .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
@@ -144,25 +185,25 @@ public class MakeReservationDetail extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(startField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(costField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateCost))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(cardBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submitButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
         //open payment info
         //make a reservation.
@@ -171,16 +212,23 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         //get all the info from the elements
         //Reservation res = new Reservation();
         Reservation res = null; //to be deleted
-        new ConfirmationScreen(this.user, res).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        //new ConfirmationScreen(this.user, res).setVisible(true);
+    }//GEN-LAST:event_submitButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void updateCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCostActionPerformed
         // TODO add your handling code here:
-        //get all the info from the elements
-        //Reservation res = new Reservation(this.user);
-        Reservation res = null; //to be deleted. 
-       new PaymentInformation().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        Float cost = 0.0f;
+        DefaultTableModel model = (DefaultTableModel) chosenRoomsTable.getModel();
+        int numRows = model.getRowCount();
+        for (int i = 0; i < numRows; i++) {
+            if(model.getValueAt(i,5) != null){
+                cost += ((float)model.getValueAt(i,3) * numDays);
+                if((boolean)model.getValueAt(i, 5))
+                cost += 10.0f;
+            }
+        }
+        costField.setText(cost.toString());
+    }//GEN-LAST:event_updateCostActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,23 +260,23 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MakeReservationDetail().setVisible(true);
+                new MakeReservationDetail(chosenRooms, startDate, endDate).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cardBox;
+    private javax.swing.JTable chosenRoomsTable;
+    private javax.swing.JTextField costField;
+    private javax.swing.JTextField endField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField startField;
+    private javax.swing.JButton submitButton;
+    private javax.swing.JButton updateCost;
     // End of variables declaration//GEN-END:variables
 }
