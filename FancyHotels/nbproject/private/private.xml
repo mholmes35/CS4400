@@ -3,19 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/FancyHotels.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/MakeReservationDetail.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/PaymentInformation.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/CancelReservation.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/MakeReservation.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/ManagerFunctionality.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/Entities/Manager.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/CustomerFunctionality.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/Entities/User.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/FindRooms.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/NewUserForm.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/fancyhotels/Login.java</file>
-            <file>file:/Users/ernestwilliams/Desktop/CS4400/CS4400/FancyHotels/src/Entities/Customer.java</file>
+            <file>file:/Users/pwilson3/Dropbox/College/CS%204400/Final/CS4400/FancyHotels/src/fancyhotels/FancyHotelSingleton.java</file>
         </group>
     </open-files>
 </project-private>
