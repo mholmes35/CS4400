@@ -11,6 +11,7 @@ import Entities.Manager;
 import Entities.Room;
 import Entities.HotelReview;
 import Entities.PaymentInformation;
+import Entities.Reservation;
 import java.sql.*;
 //import java.sql.DriverManager;
 //import java.sql.SQLException;
@@ -345,11 +346,9 @@ public class FancyHotelSingleton {
     }
     
     /**
-     * Creates a review on a hotel 
-     * @param comment Comment for the review
-     * @param rating Rating for the review
+     * Retrieves hotel reviews based on location
      * @param location Location of the hotel for the review
-     * @return status of creating a review
+     * @return ArrayList of HotelReview Objects
      * @throws SQLException in the case invalid SQL command
      */
     public static ArrayList<HotelReview> getReviews(String location) 
@@ -384,4 +383,47 @@ public class FancyHotelSingleton {
             return null;
         } 
     }
+    
+    /**
+     * Retrieves reservations based on reservation_id
+     * @param reservation_id 
+     * @return reservation object if found, otherwise null
+     * @throws SQLException in the case invalid SQL command
+     */
+    public static Reservation getReservation(int reservation_id) 
+            throws SQLException {
+        Statement stmt = null;
+                
+        try {
+            Reservation r = null;
+            stmt = conn.createStatement();
+            String s = String.format("select * from  %s .RESERVATION "
+                    + "where ReservationID=%d", 
+                    databaseName, reservation_id);
+
+            
+            ResultSet rs = stmt.executeQuery(s);
+            while (rs.next()) {
+                Date sDate = rs.getDate("Start_Date");
+                Date eDate = rs.getDate("End_Date");
+                int isCancelled = rs.getInt("Is_Cancelled");
+                float totalCost = rs.getFloat("Total_Cost");
+                String cNum = rs.getString("Card_Number");
+                r = new Reservation(sDate, eDate, isCancelled==1, totalCost, cNum, currentCustomer.getUsername());
+                
+                
+            }
+            if (stmt != null) { 
+                stmt.close();
+            } 
+             return r;
+            
+        } catch (SQLException e) {
+            System.err.println("getReviews \nException: " + e.getMessage());
+            return null;
+        } 
+    }
+    
+    
+    
 }

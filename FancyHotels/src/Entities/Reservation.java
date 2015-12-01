@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Entities;
+import java.sql.Date;
 
 /**
  *
@@ -11,16 +12,24 @@ package Entities;
  */
 public class Reservation {
     private int reservationID;
-    private String startDate; //Type?
-    private String endDate;
+    private Date startDate; //Type?
+    private Date endDate;
     private boolean isCancelled;
     private float totalCost;
-    private int p_CardNo;
+    private String p_CardNo;
     private String cust_username;
 
     
     
-    public Reservation(String startDate, String endDate, boolean isCancelled, float totalCost, int p_CardNo,String cust_username){
+    public Reservation(Date startDate, Date endDate, boolean isCancelled, 
+            float totalCost, String p_CardNo, String cust_username){
+        
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.isCancelled = isCancelled;
+        this.totalCost = totalCost;
+        this.p_CardNo = p_CardNo;
+        this.cust_username = cust_username;
         //check the dates
         //probably need to plt the string at the '/' and compare each element
         //is it in the past? throw error
@@ -50,28 +59,28 @@ public class Reservation {
     /**
      * @return the startDate
      */
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
     /**
      * @param startDate the startDate to set
      */
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
     /**
      * @return the endDate
      */
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
     /**
      * @param endDate the endDate to set
      */
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -106,14 +115,14 @@ public class Reservation {
     /**
      * @return the p_CardNo
      */
-    public int getP_CardNo() {
+    public String getP_CardNo() {
         return p_CardNo;
     }
 
     /**
      * @param p_CardNo the p_CardNo to set
      */
-    public void setP_CardNo(int p_CardNo) {
+    public void setP_CardNo(String p_CardNo) {
         this.p_CardNo = p_CardNo;
     }
 
