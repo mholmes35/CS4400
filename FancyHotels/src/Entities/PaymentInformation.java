@@ -16,7 +16,6 @@ public class PaymentInformation {
     private int cvv;
     private String cardNum;
     private String c_Username;
-<<<<<<< HEAD
 
    public PaymentInformation(String cardName, String exp, int cvv, 
         String cardNum, String username) {
@@ -27,7 +26,6 @@ public class PaymentInformation {
         c_Username = username;
     
     }
-=======
     
     public PaymentInformation(String pName, Date expDate, int cvv, 
             String cardNum, String c_Username) {
@@ -38,7 +36,6 @@ public class PaymentInformation {
         this.c_Username = c_Username;
     }
     
->>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
     /**
      * @return the pName
      */

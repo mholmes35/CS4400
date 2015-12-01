@@ -5,13 +5,12 @@
  */
 package fancyhotels;
 
-<<<<<<< HEAD
 import Entities.*;
 //import Entities.Customer;
 //import Entities.Manager;
 //import Entities.Room;
 //import Entities.HotelReview;
-=======
+
 import Entities.User;
 import Entities.Customer;
 import Entities.Manager;
@@ -19,7 +18,6 @@ import Entities.Room;
 import Entities.HotelReview;
 import Entities.PaymentInformation;
 import Entities.Reservation;
->>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
 import java.sql.*;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
@@ -371,7 +369,6 @@ public class FancyHotelSingleton {
         } 
     }
     
-<<<<<<< HEAD
     public static float countDays(String startDate, String endDate){
          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
          try{
@@ -417,8 +414,7 @@ public class FancyHotelSingleton {
         }
         
     }
-=======
->>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
+
     /**
      * Retrieves hotel reviews based on location
      * @param location Location of the hotel for the review
