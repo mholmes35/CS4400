@@ -67,11 +67,7 @@ Interfacing Database
 - [x] Create customer -- Paul
 - [x] Login (Handle if a customer or a manager) -- Paul
 - [x] Add Payment --Ernest
-<<<<<<< HEAD
-- [ ] Update Payment -- Paul
-=======
 - [x] Delete Payment -- Paul
->>>>>>> c3712f98def8dffdb8620f48d19b72cdad4ab6c4
 - [ ] Use Payment -- Ernest
 - [ ] Make Reservation -- Ernest
 - [ ] Cancel Reservation -- Ernest
@@ -79,6 +75,6 @@ Interfacing Database
 - [x] Find Rooms -- Ernest
 - [x] View Reviews -- Paul
 - [x] Create a review -- Paul
-- [ ] View Popular Rooms -- Christian
-- [ ] Get Revenue Report -- Christian
-- [ ] Get Reservation Report -- Christian
+- [ ] View Popular Rooms -- Christian/Paul
+- [ ] Get Revenue Report -- Christian/Paul
+- [ ] Get Reservation Report -- Christian/Paul
