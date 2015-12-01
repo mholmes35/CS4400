@@ -164,7 +164,7 @@ public class FancyHotelSingleton {
                     databaseName, username, password);
             } else if (type.equals("M") || type.equals("m")) {
                 s = String.format("select Username, Password from "
-                    + "%s .MANAGER where Username=\"%s\" and Password=%s", 
+                    + "%s .MANAGER where Username=\"%s\" and Password=\"%s\"",
                     databaseName, username, password);
             } else {
                 return null;
