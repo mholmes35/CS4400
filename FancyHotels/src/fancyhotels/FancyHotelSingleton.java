@@ -456,6 +456,7 @@ public class FancyHotelSingleton {
                     rID,rID,start_date, end_date, start_date, end_date, rID);
             System.out.println(x);
             ResultSet rs = stmt.executeQuery(x);
+            
             while (rs.next()) {
                 int numPeople = rs.getInt("Number_of_people");
                 String category = rs.getString("Room_category");
