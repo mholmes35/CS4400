@@ -422,7 +422,7 @@ public class FancyHotelSingleton {
                     + "or \"%s\" between Start_Date and End_Date)\n "
                     + "and ReservationID <> %d);", 
                     rID,rID,start_date, end_date, start_date, end_date, rID);
-            
+            System.out.println(x);
             ResultSet rs = stmt.executeQuery(x);
             while (rs.next()) {
                 int numPeople = rs.getInt("Number_of_people");
@@ -557,8 +557,9 @@ public class FancyHotelSingleton {
                 int isCancelled = rs.getInt("Is_Cancelled");
                 float totalCost = rs.getFloat("Total_Cost");
                 String cNum = rs.getString("Card_Number");
-                r = new Reservation(sDate, eDate, isCancelled==1, totalCost, cNum, currentCustomer.getUsername());
                 
+                r = new Reservation(sDate, eDate, isCancelled==1, totalCost, cNum, currentCustomer.getUsername());
+                r.setReservationID(reservation_id);
                 
             }
             if (stmt != null) { 
