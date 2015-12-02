@@ -396,7 +396,56 @@ public class FancyHotelSingleton {
         } catch (SQLException e) {
             System.err.println("Find Rooms \nException: " + e.getMessage());
             return null;
-        } 
+        }
+    }
+    
+    public static ArrayList<Room> findUpdatedRooms(String start_date, 
+            String end_date, int rID) 
+            throws SQLException {
+        
+        Statement stmt = null;
+        ArrayList<Room> rooms = new ArrayList<Room>();
+        
+        try {
+           stmt = conn.createStatement();
+                  
+            String x = String.format("Select * from ROOM natural join HAS "
+                    + "natural join RESERVATION where ReservationID = %d "
+                    + "and not exists\n (Select * from\n "
+                    + "(select * from ROOM natural join RESERVATION "
+                    + "natural join HAS Where not Is_Cancelled) y\n "
+                    + "where Room_number in (select Room_number from HAS "
+                    + "natural join RESERVATION where ReservationID = %d "
+                    + "and y.Location = Location)\n and "
+                    + "(Start_Date between \"%s\" and \"%s\" "
+                    + "or \"%s\" between Start_Date and End_Date "
+                    + "or \"%s\" between Start_Date and End_Date)\n "
+                    + "and ReservationID <> %d);", 
+                    rID,rID,start_date, end_date, start_date, end_date, rID);
+            System.out.println(x);
+            ResultSet rs = stmt.executeQuery(x);
+            
+            while (rs.next()) {
+                int numPeople = rs.getInt("Number_of_people");
+                String category = rs.getString("Room_category");
+                Float cPD = rs.getFloat("Cost_per_day");
+                int roomNum = rs.getInt("Room_Number");
+                String loc = rs.getString("Location");
+                rooms.add(new Room(numPeople, category, cPD, roomNum, loc,
+                        false, 10.00f));
+                
+            }
+            if (stmt != null) { 
+                stmt.close();
+                
+            } 
+            return rooms;
+            
+        } catch (SQLException e) {
+            System.err.println("Find Rooms \nException: " + e.getMessage());
+            return null;
+        }
+    
     }
     
     public static float countDays(String startDate, String endDate){
@@ -411,6 +460,26 @@ public class FancyHotelSingleton {
                return 0.0f;
          }
          
+    }
+        public static boolean isValid(String startDate, String endDate) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+         try{
+            java.util.Date start = format.parse(startDate);
+            java.util.Date end = format.parse(endDate);
+            java.util.Date now = format.parse("2015-12-04");
+            int startDiff = start.compareTo(now);
+            int endDiff = end.compareTo(now);
+            boolean isPast = (endDiff<0 && startDiff <0);
+            int compEnd = end.compareTo(start);
+            boolean isNotChronological = compEnd <0;
+            boolean isSameDay = (compEnd==0);
+            
+            return(isPast || isNotChronological || isSameDay);
+            
+         } catch (Exception e){
+               System.out.print("Error: " + e);
+               return false;
+         }
     }
     
 
@@ -510,8 +579,9 @@ public class FancyHotelSingleton {
                 int isCancelled = rs.getInt("Is_Cancelled");
                 float totalCost = rs.getFloat("Total_Cost");
                 String cNum = rs.getString("Card_Number");
-                r = new Reservation(sDate, eDate, isCancelled==1, totalCost, cNum, currentCustomer.getUsername());
                 
+                r = new Reservation(sDate, eDate, isCancelled==1, totalCost, cNum, currentCustomer.getUsername());
+                r.setReservationID(reservation_id);
                 
             }
             if (stmt != null) { 
@@ -520,7 +590,7 @@ public class FancyHotelSingleton {
              return r;
             
         } catch (SQLException e) {
-            System.err.println("getReviews \nException: " + e.getMessage());
+            System.err.println("Get Reservation Exception: " + e.getMessage());
             return null;
         } 
     }
@@ -591,7 +661,7 @@ public class FancyHotelSingleton {
              return results;
             
         } catch (SQLException e) {
-            System.err.println("getReviews \nException: " + e.getMessage());
+            System.err.println("Get Revenue Report Exception: " + e.getMessage());
             return null;
         } 
     }
@@ -637,7 +707,7 @@ public class FancyHotelSingleton {
              return results;
             
         } catch (SQLException e) {
-            System.err.println("getReviews \nException: " + e.getMessage());
+            System.err.println("Get Popular Rooms Exception: " + e.getMessage());
             return null;
         } 
     }
@@ -677,7 +747,7 @@ public class FancyHotelSingleton {
              return results;
             
         } catch (SQLException e) {
-            System.err.println("getReviews \nException: " + e.getMessage());
+            System.err.println("Reservation Report Exception: " + e.getMessage());
             return null;
         } 
     }

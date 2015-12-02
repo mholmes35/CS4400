@@ -143,7 +143,7 @@ public class Login extends javax.swing.JFrame {
             try {
                 String type = singleton.login(uname, pw);
 
-                System.out.println("Type returned " + type + " with uname " + uname + " and pw " + pw);
+                //System.out.println("Type returned " + type + " with uname " + uname + " and pw " + pw);
                 if (type == null) {
                     System.out.println("User does not exist");
                 } else if (type.equals("c")) {

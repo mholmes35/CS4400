@@ -67,7 +67,11 @@ public class CancelReservation extends javax.swing.JFrame {
         cancellationDateTextfield = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         refundAmountTextfield = new javax.swing.JTextField();
+<<<<<<< HEAD
         getResButton = new javax.swing.JButton();
+=======
+        jLabel4 = new javax.swing.JLabel();
+>>>>>>> b49f7e50487db9a62bf0ef8aaf83375c72e574a8
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,12 +159,16 @@ public class CancelReservation extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         getResButton.setText("Get Reservation");
         getResButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getResButtonActionPerformed(evt);
             }
         });
+=======
+        jLabel4.setText("Cancel Reservation");
+>>>>>>> b49f7e50487db9a62bf0ef8aaf83375c72e574a8
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,10 +220,15 @@ public class CancelReservation extends javax.swing.JFrame {
                                         .addComponent(getResButton)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -225,6 +238,14 @@ public class CancelReservation extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(getResButton)))
+=======
+                .addGap(7, 7, 7)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(reservationIDTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> b49f7e50487db9a62bf0ef8aaf83375c72e574a8
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -351,6 +372,7 @@ public class CancelReservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
