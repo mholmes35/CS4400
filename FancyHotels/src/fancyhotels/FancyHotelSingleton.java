@@ -460,7 +460,7 @@ public class FancyHotelSingleton {
          }
          
     }
-        public static boolean isPast(String startDate, String endDate) {
+        public static boolean isValid(String startDate, String endDate) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
          try{
             java.util.Date start = format.parse(startDate);
@@ -468,8 +468,13 @@ public class FancyHotelSingleton {
             java.util.Date now = format.parse("2015-12-04");
             int startDiff = start.compareTo(now);
             int endDiff = end.compareTo(now);
+            boolean isPast = (endDiff<0 && startDiff <0);
+            int compEnd = end.compareTo(start);
+            boolean isNotChronological = compEnd <0;
+            boolean isSameDay = (compEnd==0);
             
-            return (endDiff<0 && startDiff <0);
+            return(isPast || isNotChronological || isSameDay);
+            
          } catch (Exception e){
                System.out.print("Error: " + e);
                return false;
