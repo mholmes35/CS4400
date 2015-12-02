@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class CancelReservation extends javax.swing.JFrame {
     private Customer user;
     FancyHotelSingleton singleton;
-    
+
     /**
      * Creates new form CancelReservation
      */
@@ -41,7 +41,7 @@ public class CancelReservation extends javax.swing.JFrame {
         }*/
     }
 
-   
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,11 +67,8 @@ public class CancelReservation extends javax.swing.JFrame {
         cancellationDateTextfield = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         refundAmountTextfield = new javax.swing.JTextField();
-<<<<<<< HEAD
         getResButton = new javax.swing.JButton();
-=======
         jLabel4 = new javax.swing.JLabel();
->>>>>>> b49f7e50487db9a62bf0ef8aaf83375c72e574a8
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,16 +156,13 @@ public class CancelReservation extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
         getResButton.setText("Get Reservation");
         getResButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getResButtonActionPerformed(evt);
             }
         });
-=======
         jLabel4.setText("Cancel Reservation");
->>>>>>> b49f7e50487db9a62bf0ef8aaf83375c72e574a8
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -228,7 +222,6 @@ public class CancelReservation extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -238,14 +231,12 @@ public class CancelReservation extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(getResButton)))
-=======
                 .addGap(7, 7, 7)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(reservationIDTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
->>>>>>> b49f7e50487db9a62bf0ef8aaf83375c72e574a8
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -296,7 +287,7 @@ public class CancelReservation extends javax.swing.JFrame {
 
     private void reservationIDTextfieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reservationIDTextfieldKeyPressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_reservationIDTextfieldKeyPressed
 
     private void getResButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getResButtonActionPerformed
@@ -311,7 +302,7 @@ public class CancelReservation extends javax.swing.JFrame {
                 //Date swag = new Date();
                 ArrayList<Room> reserved = singleton.getCustomerReservations(
                         intID);
-                
+
                 DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
                 model.setRowCount(0);
                 for (Room room: reserved){
@@ -326,7 +317,7 @@ public class CancelReservation extends javax.swing.JFrame {
 
     private void startDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateTextFieldActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_startDateTextFieldActionPerformed
 
     /**
@@ -336,7 +327,7 @@ public class CancelReservation extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
