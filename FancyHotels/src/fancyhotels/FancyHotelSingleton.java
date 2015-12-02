@@ -460,6 +460,21 @@ public class FancyHotelSingleton {
          }
          
     }
+        public static boolean isPast(String startDate, String endDate) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+         try{
+            java.util.Date start = format.parse(startDate);
+            java.util.Date end = format.parse(endDate);
+            java.util.Date now = format.parse("2015-12-04");
+            int startDiff = start.compareTo(now);
+            int endDiff = end.compareTo(now);
+            
+            return (endDiff<0 && startDiff <0);
+         } catch (Exception e){
+               System.out.print("Error: " + e);
+               return false;
+         }
+    }
     
     public static ArrayList<Entities.PaymentInformation> getUserCards(){
         ArrayList<Entities.PaymentInformation> cards = new ArrayList<Entities.PaymentInformation>();

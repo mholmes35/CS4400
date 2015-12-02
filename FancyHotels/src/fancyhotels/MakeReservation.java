@@ -32,6 +32,10 @@ public class MakeReservation extends javax.swing.JFrame {
         
         initComponents();
         try{
+            if (singleton.isPast(startDate, endDate)) {
+               throw new Error("Cannot make a reservation for a date in the past.");
+            }
+
             ArrayList<Room> availableRooms = singleton.findRooms(location, 
                     startDate, endDate);
             DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
