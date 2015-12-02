@@ -413,6 +413,7 @@ public class FancyHotelSingleton {
          
     }
     
+
     public static ArrayList<Entities.PaymentInformation> getUserCards(){
         ArrayList<Entities.PaymentInformation> cards = new ArrayList<Entities.PaymentInformation>();
         Statement stmt = null;
@@ -522,6 +523,37 @@ public class FancyHotelSingleton {
             System.err.println("getReviews \nException: " + e.getMessage());
             return null;
         } 
+    }
+    
+    public static ArrayList<Room> getCustomerReservations(int resID){
+        ArrayList<Room> reservedRooms = new ArrayList<Room>();
+        Statement stmt = null;
+        
+        try{
+            stmt = conn.createStatement();
+            String s = String.format("select Room_Number, Number_of_people, "
+                    + "Room_category, Cost_per_day, Location, Extra_Bed  from RESERVATION "
+                    + "natural join HAS natural join ROOM where \"%s\" = "
+                    + "ReservationID and not Is_Cancelled;", resID);
+            ResultSet rs = stmt.executeQuery(s);
+            while(rs.next()){
+                int numPeople = rs.getInt("Number_of_people");
+                String category = rs.getString("Room_category");
+                float cPD = rs.getFloat("Cost_per_day");
+                int roomNum = rs.getInt("Room_Number");
+                boolean extra = rs.getBoolean("Extra_Bed");
+                String location = rs.getString("Location");
+            reservedRooms.add(new Room(numPeople, category, cPD, roomNum, 
+                    location, extra, 10.00f));
+            }
+            return reservedRooms;
+        }catch(SQLException e){
+            System.out.println("Get Res: " + e);
+            return null;
+        }
+        
+       
+    
     }
     
     public static ArrayList<HashMap> getRevenueReport() throws SQLException {
