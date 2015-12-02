@@ -19,12 +19,17 @@ public class UpdateReservation extends javax.swing.JFrame {
     private Customer user;
     FancyHotelSingleton singleton;
     Reservation currentReservation;
+    ArrayList<Room> rooms;
+    float totalCost;
+    
     /**
      * Creates new form UpdateReservation
      */
     public UpdateReservation() {
         singleton = FancyHotelSingleton.getInstance();
         currentReservation = null;
+        rooms = null;
+        totalCost = 0;
         initComponents();
     }
     
@@ -126,6 +131,11 @@ public class UpdateReservation extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        jTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTable1PropertyChange(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -270,6 +280,19 @@ public class UpdateReservation extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
+        if (rooms == null) {
+            System.out.println("Cannot perform this operation");
+            return;
+        }
+        String nStartDateString = nStartDateTextfield.getText();
+        String nEndDateString = nEndDate.getText();
+        int rID = Integer.parseInt(reservationIDTextfield.getText());
+        String worked = singleton.updateReservation(rID, nStartDateString, nEndDateString, totalCost);
+        if(worked != null){
+                Confirm confirm = new Confirm(worked); 
+                confirm.setVisible(true);
+        }
+        
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void updatedCostTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatedCostTextfieldActionPerformed
@@ -292,8 +315,16 @@ public class UpdateReservation extends javax.swing.JFrame {
         String nEndDateString = nEndDate.getText();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try{
-            ArrayList<Room> rooms = singleton.findUpdatedRooms(nStartDateString,
+            rooms = singleton.findUpdatedRooms(nStartDateString,
                     nEndDateString, currentReservation.getReservationID());
+            
+            // Remove in the case that there are already rows
+            int rowCount = model.getRowCount();
+            for(int i = 0; i < rowCount; i++) {
+                model.removeRow(0);
+            }
+            float numDays = singleton.countDays(nStartDateString, nEndDateString);
+            
             for (Room r: rooms) {
                 int rNum = r.getRoomNumber();
                 String cat = r.getRoomCategory();
@@ -302,7 +333,9 @@ public class UpdateReservation extends javax.swing.JFrame {
                 float extraBedCost = r.getExtraBedCost();
                 
                 model.addRow(new Object[]{rNum, cat, numPeople, costPD, extraBedCost, false});
+                totalCost += r.getCostPerDay() * numDays;
             }
+            updatedCostTextfield.setText(Float.toString(totalCost));
             
         } catch(Exception e) {}
         
@@ -312,6 +345,30 @@ public class UpdateReservation extends javax.swing.JFrame {
     private void cEndDateTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cEndDateTextfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cEndDateTextfieldActionPerformed
+
+    private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
+        // TODO add your handling code here:
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int numRows = model.getRowCount();
+        totalCost = 0;
+        String nStartDateString = nStartDateTextfield.getText();
+        String nEndDateString = nEndDate.getText();
+        float numDays = singleton.countDays(nStartDateString, nEndDateString);
+        
+        for(int i =0; i < numRows; i++){
+            if(model.getValueAt(i,5) != null){
+                float cost = (float)model.getValueAt(i, 3);
+                
+                if((boolean)model.getValueAt(i,5)){
+                    cost += (float)model.getValueAt(i, 4);
+                } 
+                totalCost += cost * numDays;
+            }
+        }
+        
+        updatedCostTextfield.setText(Float.toString(totalCost));
+    }//GEN-LAST:event_jTable1PropertyChange
 
     /**
      * @param args the command line arguments

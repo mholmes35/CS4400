@@ -242,6 +242,38 @@ public class FancyHotelSingleton {
         }
     }
     
+    public static String updateReservation(int reservID, String start_date, String end_date, float totalCost) {
+        //TODO
+        ResultSet rs = null;
+        Statement stmt = null;
+        try {
+            stmt = conn.createStatement();
+            //create reservation
+            String s = String.format("Update RESERVATION "
+                    + "set Start_Date = \"%s\", End_Date = \"%s\" "
+                    + "Total_Cost = %d where ReservationID = %d;", 
+                    databaseName, start_date, end_date, 
+                    totalCost, reservID);
+            stmt.executeUpdate(s, Statement.RETURN_GENERATED_KEYS);
+            //add has relationship
+            rs = stmt.getGeneratedKeys();
+            String confirmationID = "";
+            if (rs != null){
+                rs.next();
+                confirmationID = rs.getString(1);
+            }
+            
+            if (stmt != null) { 
+                stmt.close();    
+            } 
+            return confirmationID;
+            
+        } catch (SQLException e) {
+            System.err.println("Exception: " + e.getMessage());
+            return null;
+        }
+    }
+    
     /**
      * Adds a payment object for the current user
      * @param cardName Name on the card
