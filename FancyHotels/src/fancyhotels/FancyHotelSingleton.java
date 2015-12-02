@@ -134,7 +134,15 @@ public class FancyHotelSingleton {
     
     public static boolean cancelReservation(String reserv_id) {
         boolean status = false;
-        
+        Statement stmt = null;
+        try{
+            stmt = conn.createStatement();
+            String s = String.format("Update RESERVATION set Is_Cancelled = "
+                    + "1 where ReservationID = \"%s\";", reserv_id);
+            stmt.executeUpdate(s);
+        } catch(SQLException e){
+            System.out.println("Cancel: "+ e);
+        }
         
         return status;
     }
@@ -485,7 +493,7 @@ public class FancyHotelSingleton {
          try{
             java.util.Date start = format.parse(startDate);
             java.util.Date end = format.parse(endDate);
-            int days = (end.getDate() - start.getDate()) + 1;
+            long days = ((end.getTime()- start.getTime())/(1000*60*60*24)) + 1;
             return (float)days;
          } catch (Exception e){
                System.out.print("Error: " + e);

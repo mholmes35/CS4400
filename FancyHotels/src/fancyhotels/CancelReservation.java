@@ -11,6 +11,7 @@ import Entities.Reservation;
 import java.util.ArrayList;
 import java.sql.Date;
 import javax.swing.table.DefaultTableModel;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class CancelReservation extends javax.swing.JFrame {
     private Customer user;
     FancyHotelSingleton singleton;
+    private static String cancelID;
 
     /**
      * Creates new form CancelReservation
@@ -68,7 +70,6 @@ public class CancelReservation extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         refundAmountTextfield = new javax.swing.JTextField();
         getResButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +104,11 @@ public class CancelReservation extends javax.swing.JFrame {
         jLabel7.setText("Total Cost of Reservation");
 
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Start Date");
 
@@ -162,7 +168,6 @@ public class CancelReservation extends javax.swing.JFrame {
                 getResButtonActionPerformed(evt);
             }
         });
-        jLabel4.setText("Cancel Reservation");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,8 +207,8 @@ public class CancelReservation extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(startDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addComponent(startDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel3)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -214,10 +219,6 @@ public class CancelReservation extends javax.swing.JFrame {
                                         .addComponent(getResButton)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,12 +232,6 @@ public class CancelReservation extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(getResButton)))
-                .addGap(7, 7, 7)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(reservationIDTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -292,14 +287,14 @@ public class CancelReservation extends javax.swing.JFrame {
 
     private void getResButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getResButtonActionPerformed
             // TODO add your handling code here:
-            String cancelID = reservationIDTextfield.getText();
+            this.cancelID = reservationIDTextfield.getText();
             Integer intID = Integer.parseInt(cancelID.trim());
             try {
                 Reservation res = singleton.getReservation(intID);
                 startDateTextField.setText(res.getStartDate().toString());
                 endDateTextfield.setText(res.getEndDate().toString());
                 reservationCostTextfield.setText(Float.toString(res.getTotalCost()));
-                //Date swag = new Date();
+                
                 ArrayList<Room> reserved = singleton.getCustomerReservations(
                         intID);
 
@@ -310,15 +305,38 @@ public class CancelReservation extends javax.swing.JFrame {
                     room.getRoomCategory(),room.getNumPeople(),
                     room.getCostPerDay(),room.getExtraBedCost()});
                 }
+            SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date today = new java.util.Date();
+            String now = form.format(today);
+            cancellationDateTextfield.setText(now);
+            float daysBefore = singleton.countDays(now, res.getStartDate().toString());
+            if (daysBefore == 1.0f){
+                refundAmountTextfield.setText("0");
+            }else if(daysBefore >= 2.0f && daysBefore <= 3.0f){
+                refundAmountTextfield.setText(Float.toString(res.getTotalCost() * 0.2f));
+            }else if(daysBefore > 3.0f){
+                refundAmountTextfield.setText(Float.toString(res.getTotalCost() * 0.8f));
+            }else {
+                refundAmountTextfield.setText("Not Allowed");
+            }
+            
             } catch (Exception e){
                 System.out.println("Error " + e);
             }
+            
+            
     }//GEN-LAST:event_getResButtonActionPerformed
-
+  
     private void startDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateTextFieldActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_startDateTextFieldActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+        if(!refundAmountTextfield.getText().equals("Not Allowed"))
+            singleton.cancelReservation(cancelID);
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,7 +381,6 @@ public class CancelReservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
