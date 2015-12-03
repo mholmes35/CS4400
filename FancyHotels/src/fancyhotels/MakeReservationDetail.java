@@ -53,9 +53,7 @@ public class MakeReservationDetail extends javax.swing.JFrame {
         DefaultComboBoxModel boxMod = new DefaultComboBoxModel(numOnly);
         cardBox.setModel(boxMod);
         cardBox.setMaximumRowCount(cards.size());
-        for(Entities.PaymentInformation card: cards){
-            cardBox.setSelectedIndex(WIDTH);
-        }
+
         costField.setText(cost.toString());
     }
 
